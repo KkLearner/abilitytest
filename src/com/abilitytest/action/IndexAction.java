@@ -11,4 +11,9 @@ public class IndexAction {
 	public String welcome(){
 		return "interfacetest/welcome"; 
 	}
+	
+	@RequestMapping("test")
+	public String test(){
+		return "interfacetest/test"; 
+	}
 }
