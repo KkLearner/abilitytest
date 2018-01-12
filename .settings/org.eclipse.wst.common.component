@@ -2,6 +2,7 @@
     <wb-module deploy-name="AbilityTest">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/config"/>
         <property name="context-root" value="AbilityTest"/>
         <property name="java-output-path" value="/AbilityTest/build/classes"/>
     </wb-module>

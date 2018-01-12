@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/tx 
+    	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd	
+    	http://www.springframework.org/schema/task 
+    	http://www.springframework.org/schema/task/spring-task-3.0.xsd
+    	http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+    	 
+ 	 <!-- 扫描包的位置设定 -->
+	<context:component-scan base-package="com.abilitytest.dao,com.abilitytest.service"
+		use-default-filters="false">
+	</context:component-scan>
+	
+	<context:property-placeholder location="classpath:config/jdbc.properties"
+		ignore-unresolvable="true" />
+	
+	<!-- 数据源  数据库连接信息 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"> 
+        <property name="user" value="root"></property>  
+        <property name="password" value="123456"></property>  
+        <property name="driverClass" value="${dirverClass}"></property>  
+        <property name="jdbcUrl" value="${url}"></property>    
+    </bean> 
+    
+	<!-- 会话工厂 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >  
+        <property name="dataSource" ref="dataSource"></property>          
+        <property name="packagesToScan">
+        	<list>
+				<!-- 对应实体类 -->
+				<value>com.abilitytest.entity</value>
+			</list>
+		</property>  
+          
+        <property name="hibernateProperties">  
+            <props>  
+              	<!-- 方言 -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<!-- 执行时显示sql -->
+				<prop key="hibernate.show_sql">true</prop>										
+				<!-- 连接池中JDBC连接的最小数量。Hibernate默认为1 -->  
+                <prop key="hibernate.c3p0.min_size">${initConn}</prop>  
+                <!-- 连接池中JDBC连接的最大数量。Hibernate默认为100 -->  
+                <prop key="hibernate.c3p0.max_size">${maxConn}</prop>  
+                <!-- 何时从连接池中移除一个空闲的连接（以秒为单位）时。Hibernate默认为0，永不过期 -->  
+                <prop key="hibernate.c3p0.timeout">10</prop>  
+                <!-- 被缓存的预编译语句数量。用来提高性能。Hibernate默认为0，缓存不可用 -->  
+                <prop key="c3p0.max_statements">255</prop>  
+                <!-- 一个连接被自动验证前的闲置时间（以秒为单位）。Hibernate默认为0 -->  
+                <prop key="hibernate.c3p0.idle_test_period">300</prop>  
+                <!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->  
+                <prop key="hibernate.c3p0.acquire_increment">2</prop>  
+                <!-- 每次都验证连接是否可用 -->  
+                <prop key="hibernate.c3p0.validate">true</prop> 
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.connection.release_mode">after_transaction</prop> 
+            </props>  
+        </property>          
+    </bean>   
+   	
+   	<bean id="transactionManager"  
+   		class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
+    	<property name="sessionFactory" ref="sessionFactory" />  
+	</bean>
+   		
+   <!-- >  <tx:annotation-driven transaction-manager="transactionManager" />-->
+    
+    <tx:advice id="advice" transaction-manager="transactionManager">
+   	 	<tx:attributes>
+   	 		<tx:method name="*" propagation="REQUIRED"/>
+   	 	</tx:attributes>
+   	 </tx:advice>
+   	 
+   	 <aop:config>
+   	 	<aop:pointcut expression="execution(* com.abilitytest.service.impl.*.*(..))" id="pointcut"/>
+   	 	<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
+   	 </aop:config>
+</beans>  
