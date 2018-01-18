@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考生个人信息填写</title>
+    <meta name="description" content="Candidate fill in personal information " />
+    <meta name="keywords" content="name, gender, phone number, government-issued ID, type" />
+    <meta name="author" content="MikeFeng" />
+    <link rel="shortcut icon" href="../../resource/images/title_icon.png">
+    <link rel="stylesheet" href="../../resource/css/login-page.css">
+</head>
+<body>
+
+<div class="header">
+    <span>在线测评系统</span>
+</div>
+
+<h1>注册</h1>
+<input type="text" placeholder="请输入您的姓名" name="name" id="input_name">
+<input type="text" placeholder="请输入您的联系电话" name="phone" id="input_phone">
+<input type="text" placeholder="请输入您的残疾人证号" name="id_number" id="input_id_number">
+性别<input type="radio" id="gender1" name="sex" value="1" checked>男
+<input type="radio" id="gender2" name="sex" value="0">女
+<br>
+残疾类别
+<select  id="disability_type">
+    <option value="0">肢体残障</option>
+    <option value="1">听力残障</option>
+    <option value="2">智力残障</option>
+    <option value="3">视力残障</option>
+</select>
+<br><br>
+<button id="submit" >确定</button>
+
+
+<script>
+    var button = document.getElementById('submit');
+    var xmlhttp;
+    button.addEventListener('click',function () {
+        var input_name = document.getElementById('input_name').value;           //输入的姓名
+        var input_phone = document.getElementById('input_phone').value;         //输入的手机号码
+        var input_id_number = document.getElementById('input_id_number').value;//输入的残疾人证号
+
+        var radios = document.getElementsByName('sex');
+        var radios_value;                                                            //选择的性别
+        for (var i=0; i<radios.length; i++) {
+            if(radios[i].checked==true) {
+                radios_value = radios[i].value;
+            }
+        }
+
+        var selects = document.getElementById('disability_type');
+        var selects_index = selects.selectedIndex;
+//        var selects_value = selects.options[selects_index].text;
+
+
+        console.log('姓名：'+input_name+'  电话号码：'+input_phone+'   残疾人证号：'+input_id_number+'   性别：'+radios_value+'   残疾类别：'+selects_index);
+        var fill_personal_json_data = JSON.stringify( {name:input_name,phone:input_phone,id_number:input_id_number,sex:radios_value,disability_type:selects_index} );
+        console.log(fill_personal_json_data);
+
+        Register();
+    });
+
+
+
+    function query(url,callbackfunction) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
+        xmlhttp.open("POST", url, true);
+        xmlhttp.responseType = 'json';
+        xmlhttp.send();
+    }
+
+    function Register() {
+        query("******待补充*******",function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var status = xmlhttp.response;
+                //****************测试时候再补充处理代码***************************
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

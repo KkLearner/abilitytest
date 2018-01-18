@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登陆</title>
     <meta name="description" content="Login Page" />
-    <meta name="keywords" content="page transition, css animation, website, effect, css3, jquery" />
+    <meta name="keywords" content="Online test login" />
     <meta name="author" content="MikeFeng" />
-    <link rel="shortcut icon" href="/AbilityTest/resource/images/title_icon.png">
-    <link rel="stylesheet" href="/AbilityTest/resource/css/login-page.css">
+    <link rel="shortcut icon" href="../../resource/images/title_icon.png">
+    <link rel="stylesheet" href="../../resource/css/login-page.css">
 </head>
 <body>
 
@@ -18,14 +18,55 @@
 </div>
 
 <h1>登陆</h1>
-<form action="/AbilityTest/user/login" method="post">
-    <input type="text" placeholder="请输入您的账号" name="account">
-    <input type="password" placeholder="请输入您的密码" name="password">
+    <input type="text" placeholder="请输入您的账号" name="account" id="account">
+    <input type="password" placeholder="请输入您的密码" name="password" id="password">
     <input type="radio" id="select1" name="Mode" value="FullFunction" checked>全功能模式
     <input type="radio" id="select2" name="Mode" value="Exam">考试模式
     <br><br>
-    <input type="submit">
-</form>
+    <button id="submit">提交</button>
+
+
+<script>
+    var button = document.getElementById('submit');
+    var xmlhttp;
+    button.addEventListener('click',function () {
+        var input_account = document.getElementById('account').value;
+        var input_password = document.getElementById('password').value;
+        var choose_radios=document.getElementsByName("Mode");
+        var radios_value;
+        for(var i=0;i<choose_radios.length;i++) {
+            if(choose_radios[i].checked==true) {
+                radios_value = choose_radios[i].value;
+            }
+        }
+        console.log('账号：'+input_account+'  密码：'+input_password,'   选中的模式：'+radios_value);
+        var login_json_data = JSON.stringify( {account:input_account,password:input_password,mode:radios_value} );
+        console.log(login_json_data);
+
+        CheckAccountPassword();
+
+    });//button EventListener end
+
+
+
+    function query(url,callbackfunction) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
+        xmlhttp.open("POST", url, true);
+        xmlhttp.responseType = 'json';
+        xmlhttp.send();
+    }
+
+    function CheckAccountPassword() {
+        query("/AbilityTest/user/login",function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var status = xmlhttp.response;
+                //****************测试时候再补充处理代码***************************
+            }
+        });
+    }
+
+</script>
 
 </body>
 </html>
