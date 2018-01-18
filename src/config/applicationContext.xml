@@ -47,7 +47,8 @@
               	<!-- 方言 -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<!-- 执行时显示sql -->
-				<prop key="hibernate.show_sql">true</prop>										
+				<prop key="hibernate.show_sql">true</prop>	
+				<prop key="hibernate.format_sql">true</prop>									
 				<!-- 连接池中JDBC连接的最小数量。Hibernate默认为1 -->  
                 <prop key="hibernate.c3p0.min_size">${initConn}</prop>  
                 <!-- 连接池中JDBC连接的最大数量。Hibernate默认为100 -->  

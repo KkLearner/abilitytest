@@ -15,6 +15,14 @@ import javax.persistence.Table;
 @Table(name="testresult")
 public class TestResult implements Serializable {
 
+	public Integer getTestpool_id() {
+		return testpool_id;
+	}
+
+	public void setTestpool_id(Integer testpool_id) {
+		this.testpool_id = testpool_id;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -79,6 +87,9 @@ public class TestResult implements Serializable {
 	@Column(name="person_id")
 	private Integer person_id;
 	
+	@Column(name="testpool_id")
+	private Integer testpool_id;
+	
 	@Column(name="testNumber")
 	private Integer testNumber;
 	
@@ -94,11 +105,13 @@ public class TestResult implements Serializable {
 	@Column(name="finishtime")
 	private Date finishtime;
 
-	public TestResult(Integer id, Integer person_id, Integer testNumber, String answer, Integer if_del, Time usetime,
-			Date finishtime) {
+	
+
+	public TestResult(Integer person_id, Integer testpool_id, Integer testNumber, String answer, Integer if_del,
+			Time usetime, Date finishtime) {
 		super();
-		this.id = id;
 		this.person_id = person_id;
+		this.testpool_id = testpool_id;
 		this.testNumber = testNumber;
 		this.answer = answer;
 		this.if_del = if_del;
@@ -106,10 +119,12 @@ public class TestResult implements Serializable {
 		this.finishtime = finishtime;
 	}
 
-	public TestResult(Integer person_id, Integer testNumber, String answer, Integer if_del, Time usetime,
-			Date finishtime) {
+	public TestResult(Integer id, Integer person_id, Integer testpool_id, Integer testNumber, String answer,
+			Integer if_del, Time usetime, Date finishtime) {
 		super();
+		this.id = id;
 		this.person_id = person_id;
+		this.testpool_id = testpool_id;
 		this.testNumber = testNumber;
 		this.answer = answer;
 		this.if_del = if_del;

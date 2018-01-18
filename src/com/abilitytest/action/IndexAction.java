@@ -7,13 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class IndexAction {
 
-	@RequestMapping("welcome")
+	@RequestMapping(value="welcome")
 	public String welcome(){
 		return "interfacetest/welcome"; 
 	}
 	
-	@RequestMapping("test")
+	@RequestMapping(value="test")
 	public String test(){
 		return "interfacetest/test"; 
+	}
+	
+	@RequestMapping(value="login")
+	public String login(){
+		return "login"; 
 	}
 }

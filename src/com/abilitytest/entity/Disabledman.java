@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="persons")
-public class Persons implements Serializable {
+@Table(name="disabledman")
+public class Disabledman implements Serializable {
 
 	public Integer getId() {
 		return id;
@@ -38,14 +38,6 @@ public class Persons implements Serializable {
 		this.name = name;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Integer getSex() {
 		return sex;
 	}
@@ -68,14 +60,6 @@ public class Persons implements Serializable {
 
 	public void setDisability_type(Integer disability_type) {
 		this.disability_type = disability_type;
-	}
-
-	public Integer getType() {
-		return type;
-	}
-
-	public void setType(Integer type) {
-		this.type = type;
 	}
 
 	public Integer getIf_del() {
@@ -113,9 +97,6 @@ public class Persons implements Serializable {
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="password")
-	private String password;
-	
 	@Column(name="sex")
 	private Integer sex;
 	
@@ -125,8 +106,6 @@ public class Persons implements Serializable {
 	@Column(name="disability_type")
 	private Integer disability_type;
 	
-	@Column(name="type")
-	private Integer type;
 	
 	@Column(name="if_del")
 	private Integer if_del;
@@ -137,39 +116,35 @@ public class Persons implements Serializable {
 	@Column(name="modifytime")
 	private Date modifytime;
 
-	public Persons() {
-		super();
-	}
-
-	public Persons(Integer id, String id_number, String name, String password, Integer sex, String phone,
-			Integer disability_type, Integer type, Integer if_del, Date buildtime, Date modifytime) {
+	public Disabledman(Integer id, String id_number, String name, Integer sex, String phone, Integer disability_type,
+			Integer if_del, Date buildtime, Date modifytime) {
 		super();
 		this.id = id;
 		this.id_number = id_number;
 		this.name = name;
-		this.password = password;
 		this.sex = sex;
 		this.phone = phone;
 		this.disability_type = disability_type;
-		this.type = type;
 		this.if_del = if_del;
 		this.buildtime = buildtime;
 		this.modifytime = modifytime;
 	}
 
-	public Persons(String id_number, String name, String password, Integer sex, String phone, Integer disability_type,
-			Integer type, Integer if_del, Date buildtime, Date modifytime) {
+	public Disabledman(String id_number, String name, Integer sex, String phone, Integer disability_type,
+			Integer if_del, Date buildtime, Date modifytime) {
 		super();
 		this.id_number = id_number;
 		this.name = name;
-		this.password = password;
 		this.sex = sex;
 		this.phone = phone;
 		this.disability_type = disability_type;
-		this.type = type;
 		this.if_del = if_del;
 		this.buildtime = buildtime;
 		this.modifytime = modifytime;
+	}
+
+	public Disabledman() {
+		super();
 	}
 	
 	
