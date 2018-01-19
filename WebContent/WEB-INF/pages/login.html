@@ -30,11 +30,11 @@
     var button = document.getElementById('submit');
     var xmlhttp;
     var login_json_data;
+    var radios_value;
     button.addEventListener('click',function () {
         var input_account = document.getElementById('account').value;
         var input_password = document.getElementById('password').value;
         var choose_radios=document.getElementsByName("Mode");
-        var radios_value;
         for(var i=0;i<choose_radios.length;i++) {
             if(choose_radios[i].checked==true) {
                 radios_value = choose_radios[i].value;
@@ -64,7 +64,7 @@
         query("/AbilityTest/user/login",function() {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
                 var login_return_info = xmlhttp.response;
-                //****************测试时候再补充处理代码***************************
+
                 console.log(login_return_info);
                 console.log('Return data type: '+ (typeof login_return_info) );
                 console.log(login_return_info['status']+"  typeof:"+(typeof login_return_info['status']));
@@ -74,9 +74,22 @@
                     console.log('登陆成功');
                     if(login_return_info['results'][0]['type'] == "0"){//系统管理员
                         console.log('系统管理员');
+                        if(radios_value == "FullFunction"){//全功能模式
+                            //*******************************有待补充***************************************************
+                        }
+                        else {//考试模式
+                            window.location.href = "/AbilityTest/register";
+                        }
                     }
-                    else {//考试模式
-                        console.log('考试模式');
+                    else {//非系统管理员
+                        console.log('非系统管理员');
+                        if(radios_value == "FullFunction"){
+                            alert('你没有登陆后台的权限');
+                        }
+                        else {
+                            window.location.href = "/AbilityTest/register";
+                        }
+
                     }
                 }
                 else {
