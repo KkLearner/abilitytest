@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -8,8 +8,8 @@
     <meta name="description" content="Login Page" />
     <meta name="keywords" content="Online test login" />
     <meta name="author" content="MikeFeng" />
-    <link rel="shortcut icon" href="../../resource/images/title_icon.png">
-    <link rel="stylesheet" href="../../resource/css/login-page.css">
+    <link rel="shortcut icon" href="/AbilityTest/resource/images/title_icon.png">
+    <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/css/login-page.css">
 </head>
 <body>
 
@@ -29,6 +29,7 @@
 <script>
     var button = document.getElementById('submit');
     var xmlhttp;
+    var login_json_data;
     button.addEventListener('click',function () {
         var input_account = document.getElementById('account').value;
         var input_password = document.getElementById('password').value;
@@ -40,7 +41,8 @@
             }
         }
         console.log('账号：'+input_account+'  密码：'+input_password,'   选中的模式：'+radios_value);
-        var login_json_data = JSON.stringify( {account:input_account,password:input_password,mode:radios_value} );
+//        login_json_data = JSON.stringify( {account:input_account,password:input_password} );
+        login_json_data = "account="+input_account+"&password="+input_password ;
         console.log(login_json_data);
 
         CheckAccountPassword();
@@ -52,16 +54,35 @@
     function query(url,callbackfunction) {
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
-        xmlhttp.open("POST", url, true);
+        xmlhttp.open("POST", encodeURI(url), true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xmlhttp.responseType = 'json';
-        xmlhttp.send();
+        xmlhttp.send( login_json_data );
     }
 
     function CheckAccountPassword() {
         query("/AbilityTest/user/login",function() {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                var status = xmlhttp.response;
+                var login_return_info = xmlhttp.response;
                 //****************测试时候再补充处理代码***************************
+                console.log(login_return_info);
+                console.log('Return data type: '+ (typeof login_return_info) );
+                console.log(login_return_info['status']+"  typeof:"+(typeof login_return_info['status']));
+
+
+                if(login_return_info['status']=="0"){//登陆成功
+                    console.log('登陆成功');
+                    if(login_return_info['results'][0]['type'] == "0"){//系统管理员
+                        console.log('系统管理员');
+                    }
+                    else {//考试模式
+                        console.log('考试模式');
+                    }
+                }
+                else {
+                    alert('账号或密码错误');
+                }
+
             }
         });
     }

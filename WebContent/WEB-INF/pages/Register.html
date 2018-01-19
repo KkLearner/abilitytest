@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -8,8 +8,8 @@
     <meta name="description" content="Candidate fill in personal information " />
     <meta name="keywords" content="name, gender, phone number, government-issued ID, type" />
     <meta name="author" content="MikeFeng" />
-    <link rel="shortcut icon" href="../../resource/images/title_icon.png">
-    <link rel="stylesheet" href="../../resource/css/login-page.css">
+    <link rel="shortcut icon" href="/AbilityTest/resource/images/title_icon.png">
+    <link rel="stylesheet" href="/AbilityTest/resource/css/login-page.css">
 </head>
 <body>
 
@@ -74,7 +74,7 @@
     }
 
     function Register() {
-        query("******待补充*******",function() {
+        query("/AbilityTest/user/regist",function() {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
                 var status = xmlhttp.response;
                 //****************测试时候再补充处理代码***************************
