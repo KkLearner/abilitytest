@@ -110,4 +110,38 @@ public class UserAction {
 		session.invalidate();
 		return ResultReturn.setMap(0, "success", 0, null);
 	}
+	
+	@RequestMapping(value="/addAdministrator",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> adddministrator(@RequestParam Map<String, Object>map){	
+		if(checkAccount((String)map.get("account")))
+			return ResultReturn.setMap(1, "this account exist", 0, null);
+		else if(administratorService.add(map))
+			return ResultReturn.setMap(0, "success", 0, null);
+		return ResultReturn.setMap(2, "inside error", 0, null);
+	}
+	
+	public boolean checkAccount(String account) {
+		return administratorService.findTotalByUniqueProperty("account", account)>0?true:false;
+	}
+	
+	@RequestMapping(value="/checkAccountExist")
+	@ResponseBody
+	public Map<String, Object> checkAccountExist(@RequestParam(value="account",required=false,defaultValue="") String account){
+		if(!account.equals("")&&checkAccount(account))
+			return ResultReturn.setMap(0, "account is exist", 0, null);
+		return ResultReturn.setMap(1, "no this account", 0, null);
+	}
+	
+	@RequestMapping(value="/updatePsw",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updatePsw(@RequestParam(value="account") String account
+			,@RequestParam(value="password") String password){
+		Administrator person = administratorService.findByUniqueProperty("account", account);
+		if(person == null)
+			return ResultReturn.setMap(1, "no this account", 0, null);		
+		person.setPassword(password);
+		administratorService.update(person);
+		return ResultReturn.setMap(0, "success", 0, null);	
+	}
 }

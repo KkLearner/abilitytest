@@ -104,5 +104,62 @@
         <tr>
     </table>
 </form>
+
+<form action="/AbilityTest/user/checkAccountExist" method="get">
+	<table width="500px" border="1px #FFFFFF soild">
+    	<tr>
+        	<th colspan="2" align="left">检查该账号是否存在</th>
+        <tr>
+        <tr>
+        	<td width="30%">account(账号 必填)</td>
+            <td><input type="text" name="account"  value="kk"/></td>
+        </tr>  
+        <tr>
+        	<td colspan="2" align="left"><input type="submit" value="go"/> </td>
+        <tr>
+    </table>
+</form>
+
+<form action="/AbilityTest/user/addAdministrator" method="POST">
+	<table width="500px" border="1px #FFFFFF soild">
+    	<tr>
+        	<th colspan="2" align="left">添加管理员</th>
+        <tr>
+        <tr>
+        	<td width="30%">account(账号 必填)</td>
+            <td><input type="text" name="account"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">password(密码 必填)</td>
+            <td><input type="password" name="password"  value=""/></td>
+        </tr>  
+        <tr>
+        	<td width="30%">type(类型：0--系统管理员，1--普通管理员,默认1  选填)</td>
+            <td><input type="text" name="type"  value="1"/></td>
+        </tr>
+        <tr>
+        	<td colspan="2" align="left"><input type="submit" value="go"/> </td>
+        <tr>
+    </table>
+</form>
+
+<form action="/AbilityTest/user/updatePsw" method="POST">
+	<table width="500px" border="1px #FFFFFF soild">
+    	<tr>
+        	<th colspan="2" align="left">更新密码</th>
+        <tr>
+        <tr>
+        	<td width="30%">account(账号 必填)</td>
+            <td><input type="text" name="account"  value="kk"/></td>
+        </tr>
+        <tr>
+        	<td width="30%">password(密码 必填)</td>
+            <td><input type="password" name="password"  value=""/></td>
+        </tr>  
+        <tr>
+        	<td colspan="2" align="left"><input type="submit" value="go"/> </td>
+        <tr>
+    </table>
+</form>
 </body>
 </html>
