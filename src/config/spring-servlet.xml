@@ -18,6 +18,20 @@
 	
 	<mvc:annotation-driven/>
 	
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截的请求url， /**表示拦截所有的请求 -->
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/resources/**"/>
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/user/login"/>
+			<mvc:exclude-mapping path="/user/loginOut"/>
+			<mvc:exclude-mapping path="/interfacetest/**"/>
+			<bean class="com.abilitytest.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<mvc:resources location="/resource/" mapping="/resource/**"></mvc:resources>
 	
     <!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 -->

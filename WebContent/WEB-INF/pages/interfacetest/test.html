@@ -69,5 +69,40 @@
         <tr>
     </table>
 </form>
+
+<form action="/AbilityTest/test/getTestList" method="post">
+	<table width="500px" border="1px #FFFFFF soild">
+    	<tr>
+        	<th colspan="2" align="left">获取测试结果列表</th>
+        <tr>
+        <tr>
+        	<td width="30%">name(用户名 选填)</td>
+            <td><input type="text" name="name"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">id_number(证件号 选填)</td>
+            <td><input type="text" name="id_number"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">startTime(开始时间,格式为yyyy-mm-dd 选填)</td>
+            <td><input type="text" name="startTime"  value=""/></td>
+        </tr> 
+        <tr>
+        	<td width="30%">endTime(结束时间,格式为yyyy-mm-dd 选填)</td>
+            <td><input type="text" name="endTime"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">pageNum(页号，默认1  选填)</td>
+            <td><input type="text" name="pageNum"  value="1"/></td>
+        </tr> 
+        <tr>
+        	<td width="30%">pageSize(页面大小，默认10  选填)</td>
+            <td><input type="text" name="pageSize"  value="10"/></td>
+        </tr>         
+        <tr>
+        	<td colspan="2" align="left"><input type="submit" value="go"/> </td>
+        <tr>
+    </table>
+</form>
 </body>
 </html>

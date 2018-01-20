@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,12 +51,13 @@ public class UserAction {
 	 */	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> login(@RequestParam Map<String, Object>map){
+	public Map<String, Object> login(HttpSession session,@RequestParam Map<String, Object>map){
 		Administrator person = administratorService.findByUniqueProperty("account", (String)map.get("account"));
 		if(person == null)
 			return ResultReturn.setMap(1, "no this account", 0, null);
 		else if(!person.getPassword().equals((String)map.get("password")))
 			return ResultReturn.setMap(2, "password is error", 0, null);
+		session.setAttribute("userid", person.getId());
 		List<Map<String, Object>> results = new ArrayList<>();
 		Map<String, Object> result = new HashMap<>();
 		result.put("type", person.getType());
@@ -98,5 +102,12 @@ public class UserAction {
 		List<Map<String, Object>> results = new ArrayList<>();
 		results.add(temp.get(0));
 		return ResultReturn.setMap(0, "success", 1, results);
+	}
+	
+	@RequestMapping(value="/loginOut")
+	@ResponseBody
+	public Map<String, Object> loginOut(@RequestParam Map<String, Object>map,HttpSession session){
+		session.invalidate();
+		return ResultReturn.setMap(0, "success", 0, null);
 	}
 }
