@@ -35,11 +35,11 @@ public class TestPoolServiceImpl extends BaseServiceImpl<TestPool> implements Te
 			builder.append(" and (b.modifytime between '"+((String)startTime)+"' and '"+((String)endTime)+"')");
 		Object pageNum = map.get("pageNum");
 		int pagenum = 1;
-		if(pageNum!=null&&Integer.parseInt((String)pageNum)>1)
+		if(pageNum!=null&&!((String)pageNum).trim().equals("")&&Integer.parseInt((String)pageNum)>1)
 			pagenum = Integer.parseInt((String)pageNum);
 		Object pageSize = map.get("pageSize");
 		int pagesize = 10;
-		if(pageSize!=null&&Integer.parseInt((String)pageSize)>0)
+		if(pageSize!=null&&!((String)pageSize).trim().equals("")&&Integer.parseInt((String)pageSize)>0)
 			pagesize = Integer.parseInt((String)pageSize);
 		return testPoolDao.getTestList(builder.toString(), pagenum,pagesize);
 	}
