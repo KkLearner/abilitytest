@@ -70,13 +70,17 @@ public class UserAction {
 	public Map<String, Object> regist(@RequestParam Map<String, Object>map){
 		List<Disabledman> persons = disabledmanService.getByCriterion(Restrictions.eq("id_number", (String)map.get("id_number"))
 				,Restrictions.eq("name", (String)map.get("name")));
+		List<Map<String, Object>> list = new ArrayList<>();
+		Map<String, Object> teMap = new HashMap<>();
 		if(persons!=null && !persons.isEmpty()){//已注册			
+			teMap.put("personid", persons.get(0).getId());
+			list.add(teMap);
 			String hql = "select count(id) from TestPool where"
 					+ " person_id="+persons.get(0).getId()+" and"
 					+ " if_del=0";
 			int number = testPoolService.countByHQL(hql);
 			if(number==0)//没有提交测试
-				return ResultReturn.setMap(1, "success!No Submission!", 0, null);			
+				return ResultReturn.setMap(1, "success!No Submission!", 0, list);			
 		}else {//未注册，进行注册后直接进入测试页面
 			Date now = new Date();
 			Disabledman mDisabledman = new Disabledman((String)map.get("id_number")
@@ -84,9 +88,11 @@ public class UserAction {
 					, (String)map.get("phone"), Integer.parseInt((String)map.get("disability_type"))
 					, 0, now, now);
 			disabledmanService.add(mDisabledman);
-			return ResultReturn.setMap(0, "success!But user is not exist!", 0, null);
+			teMap.put("personid", mDisabledman.getId());
+			list.add(teMap);
+			return ResultReturn.setMap(0, "success!But user is not exist!", 0, list);
 		}
-		return ResultReturn.setMap(2, "success!Have Submission!", 0, null);//已提交
+		return ResultReturn.setMap(2, "success!Have Submission!", 0, list);//已提交
 	}
 	
 	@RequestMapping("/loadLastResult")

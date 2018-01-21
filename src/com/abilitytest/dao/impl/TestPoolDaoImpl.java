@@ -19,7 +19,7 @@ public class TestPoolDaoImpl extends BaseDaoImpl<TestPool> implements TestPoolDa
 		Object cObject = session.createSQLQuery("select count(a.id) "+sql).uniqueResult();
 		if(cObject!=null)
 			page.setTotalCount(((Number)cObject).intValue());
-		Query query = session.createSQLQuery("select a.`name`,a.id_number,b.test,date_format(b.modifytime,'%Y-%m-%d %T') as modifytime"
+		Query query = session.createSQLQuery("select a.id as personid,b.id as testid,a.`name`,a.id_number,b.test,date_format(b.modifytime,'%Y-%m-%d %T') as modifytime"
 				+sql+" order by a.id_number,b.modifytime desc")
 				.setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);		
 		page.setPageList(query.setFirstResult((int)page.getFirstResult())
