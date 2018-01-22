@@ -1,0 +1,271 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试系统后台</title>
+    <meta name="description" content="Backstage management system" />
+    <meta name="keywords" content="Backstage Management" />
+    <meta name="author" content="MikeFeng" />
+
+    <link rel="shortcut icon" href="/AbilityTest/resource/images/title_icon.png">
+    <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/css/backstage.css">
+    <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="header">
+    <span>测评系统——系统管理员部分</span>
+</div>
+
+测试对象名：<input type="text" name="name" id="input_name">
+证件号码：<input type="text" name="id_number" id="input_id_number">
+测试时间：<input type="text" name="buildtime" id="input_buildtime">
+<button class="query-button" id="query">查询</button>
+&nbsp;&nbsp;
+<select id="select_function" onchange="SelectChange();">
+    <option value="more_function">更多功能</option>
+    <option value="create_user">新建用户</option>
+    <option value="modify_password">修改密码</option>
+</select>
+
+<div class="container" id="container">
+    <div class="row col-top-bottom" id="row0">
+        <div class="col-1 col-left-right">
+            序号
+        </div>
+        <div class="col-1 col-right">
+            测试对象
+        </div>
+        <div class="col-1 col-right">
+            证件号码
+        </div>
+        <div class="col-2 col-right">
+            测试时间
+        </div>
+        <div class="col-5 col-right">
+            测试内容
+        </div>
+        <div class="col-2 col-right">
+            测试详情/测试报告
+        </div>
+    </div> <!-- row end -->
+
+
+    <!-- 每一行的HTML示例 -->
+    <!--<div class="row col-bottom" id="row2">-->
+        <!--<div class="col-1 col-left-right">-->
+            <!--1-->
+        <!--</div>-->
+        <!--<div class="col-1 col-right">-->
+            <!--kk-->
+        <!--</div>-->
+        <!--<div class="col-1 col-right">-->
+            <!--1-->
+        <!--</div>-->
+        <!--<div class="col-2 col-right">-->
+            <!--2018-01-19-->
+            <!--<br>16:52:49-->
+        <!--</div>-->
+        <!--<div class="col-5 col-right">-->
+            <!--第一部分<input type='checkbox' checked='checked'>-->
+            <!--第二部分<input type="checkbox" >-->
+            <!--第三部分<input type="checkbox" >-->
+            <!--<br>-->
+            <!--第四部分<input type="checkbox" checked="checked">-->
+            <!--第五部分<input type="checkbox" >-->
+            <!--第六部分<input type="checkbox" checked="checked">-->
+            <!--<br>-->
+            <!--第七部分<input type="checkbox" checked="checked">-->
+            <!--第八部分<input type="checkbox" >-->
+            <!--第九部分<input type="checkbox" checked="checked">-->
+        <!--</div>-->
+        <!--<div class="col-2 col-right">-->
+            <!--<button class="test-detail-report">测试详情</button>-->
+            <!--<button class="test-detail-report">测试报告</button>-->
+        <!--</div>-->
+    <!--</div> &lt;!&ndash; row end &ndash;&gt;-->
+
+
+</div> <!-- container-fluid end -->
+
+
+
+
+<script>
+    //加载页面同时应该立刻运行AJAX，向服务端发送
+    var xmlhttp;
+    var pageNum = 1;
+    var pageSize = 10;
+    var rows = 0;//除了标出列名的第0行外，共有多少行
+
+    function query(url,callbackfunction,send_data) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
+        xmlhttp.open("POST", encodeURI(url), true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xmlhttp.responseType = 'json';
+        xmlhttp.send(send_data);
+    }
+
+    function GetTestList() {
+        var AbilityTest = "pageNum="+pageNum+"&pageSize="+pageSize;//发送到服务端的数据
+        query("/AbilityTest/test/getTestList", function () {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var testlist = xmlhttp.response;
+                console.log(testlist);
+                if (testlist['results'].length>0){//如果有测试记录
+                    CreateRows(testlist);
+                }
+            }
+        },AbilityTest);
+    }//GetTestList end
+    
+    function CreateRows(data) {
+        var results = data['results'];//数组，每一个数组元素包含了一行的信息
+        var col_number = 0;//每行的第一列“序号”
+        var row;//新行
+        var col;//新列
+        rows = results.length;
+        for(var i=1;i<=results.length;i++){//大for循环，每一次加入一行
+            row = document.createElement('div');//创建新的一行
+            row.className = 'row col-bottom';
+            row.id = 'row'+i;//在更新页面的时候方便捕获到此div
+            col_number++;
+
+            for(var j=1;j<=6;j++){//小for循环，每次循环加入新的一列
+                switch (j){
+                    case 1:
+                        col = document.createElement('div');//第一列
+                        col.className = 'col-1 col-left-right';
+                        col.innerText = col_number;//序号
+                        row.appendChild(col);
+                        break;
+                    case 2:
+                    case 3:
+                    case 4:
+                        col = document.createElement('div');//第2/3/4列
+                        if (j == 2){
+                            col.className = 'col-1 col-right';
+                            col.innerText = results[i-1]['name'];//姓名
+                            row.appendChild(col);
+                        }
+                        else if (j == 3){
+                            col.className = 'col-1 col-right';
+                            col.innerText = results[i-1]['id_number'];//证件号码
+                            row.appendChild(col);
+                        }
+                        else {
+                            col.className = 'col-2 col-right';
+                            var time = results[i-1]['modifytime'];
+                            var timelist = time.split(" ");
+                            col.innerHTML = timelist[0]+" <br> "+timelist[1];//测试时间
+                            row.appendChild(col);
+                        }
+                        break;
+                    case 5:
+                        var test_list = results[i-1]['test'].split(",");
+                        var checked = "<input type='checkbox' checked='checked'>";
+                        var unchecked = "<input type='checkbox'>";
+                        var part_list = ['一','二','三','四','五','六','七','八','九'];
+                        col = document.createElement('div');//第一列
+                        col.className = 'col-5 col-right';
+                        var inner_content = "";
+                        for(var k=0;k<9;k++){
+                            inner_content = inner_content+"第"+part_list[0]+'部分';
+                            if(test_list[k] == "0"){
+                                inner_content = inner_content+unchecked;
+                            }
+                            else {
+                                inner_content = inner_content+checked;
+                            }
+                            if(k==2 || k==5){
+                                inner_content = inner_content+"<br>";
+                            }
+                        }
+                        col.innerHTML = inner_content;//序号
+                        row.appendChild(col);
+                        break;
+                    case 6:
+                        col = document.createElement('div');//第一列
+                        col.className = 'col-2 col-right';
+                        var detail_button = "<button class='test-detail-report'>测试详情</button>" ;
+                        var report_button = " <button class='test-detail-report'>测试报告</button>" ;
+                        col.innerHTML = detail_button;
+                        col.innerHTML += report_button;
+                        row.appendChild(col);
+                        break;
+                }
+            }//小for循环
+
+            //将新行插入数据表中
+            var referenceElement = null;
+            var container = document.getElementById('container');
+            container.insertBefore(row,referenceElement);
+
+        }//大for end
+    }
+
+    function SelectChange() {
+        var select_value = document.getElementById('select_function').value;
+        console.log(select_value);
+        if(select_value == 'create_user'){//新建账号
+            window.location.href = "/AbilityTest/adduser";
+        }
+        else if (select_value == 'modify_password'){//修改此账号密码
+            window.location.href = "/AbilityTest/modifypassword";
+        }
+    }
+    
+    function DeleteRows() {
+        for (var mm=1;mm<=rows;mm++){
+            var delete_element = document.getElementById('row'+mm);
+            delete_element.outerHTML = "";
+            delete delete_element;
+        }
+        rows = 0;
+    }
+
+    GetTestList();//初次加载页面时调用，用于获取考生测试记录（一页最多显示10条*********上一页/下一页功能有待补充**********）
+
+    //“查询”按钮
+    var query_button = document.getElementById('query');
+    query_button.addEventListener('click',function () {
+        var query_list = [
+            document.getElementById('input_name').value,
+            document.getElementById('input_id_number').value,
+            document.getElementById('input_buildtime').value
+        ];
+        var query_attr = ["&name=","&id_number=","&startTime="];
+        var query_url = "";//发起查询的url
+        for(var tt=0;tt<3;tt++){
+            if(query_list[tt]!=""){
+                query_url += query_attr[tt]+query_list[tt];
+            }
+        }
+        console.log('query_url: '+query_url);
+
+        query("/AbilityTest/test/getTestList",function () {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var query_list = xmlhttp.response;
+                console.log(query_list);
+                DeleteRows();
+                CreateRows(query_list);
+            }
+        },query_url);
+
+    });//query_button监听器end
+
+//    1、查询功能：测试对象名、证件号码、测试时间
+//    2、新建非系统管理员用户  ---->页面跳转
+//    3、管理员修改密码  ----> 页面跳转
+//    4、测试记录列表 ----> 具体每列内容：1、序号  2、测试对象  3、证件号码  4、测试时间  5、测试内容  6、两个按钮“测试详情”和“测试报告”
+//    5、每一条记录后面都有两个按钮：测试详情，测试报告  ----> 页面跳转
+//    6、所有记录下面有两个按钮“上一页”和“下一页”********************之后再补充******************************
+
+</script>
+
+
+</body>
+</html>
