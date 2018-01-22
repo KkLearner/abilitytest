@@ -8,19 +8,19 @@
 
 
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
 url：/AbilityTest/user/login
 type：post
 description：登录系统接口
-传参名	     类型	    意义	 是否必须	 例子
-account	   String	 账号	    是	     “kk”
-password	 String	 密码	    是	     “123456”
+传参名	     类型	     意义	      是否必须	 例子
+account	       String	 账号	    是	     “kk”
+password       String	 密码	    是	     “123456”
 
-返回参数名	类型	意义	例子
-status	int	状态码：0/1/2	0
-msg	String	信息：“success”/“no this account”/”password is error”	“success”
-total	int	总条数	1
-type	int	类型：0--系统管理员，1--测试对象	0
+返回参数名	类型	意义	                                               例子
+status	   int	     状态码：0/1/2	                                            0
+msg	   String    信息：“success”/“no this account”/”password is error”	  “success”
+total	   int	     总条数	                                             1
+type	   int	     类型：0--系统管理员，1--测试对象	                      0
 
 
 
