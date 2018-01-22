@@ -17,46 +17,40 @@
 
 
 --------------------------------------------------------------------------------------------------------------------------------
-
-<!-- Table goes in the document BODY -->
-<table class="gridtable">
-    <tr>
-        <th>Info Header 1</th><th>Info Header 2</th><th>Info Header 3</th>
-    </tr>
-    <tr>
-        <td>Text 1A</td><td>Text 1B</td><td>Text 1C</td>
-    </tr>
-    <tr>
-        <td>Text 2A</td><td>Text 2B</td><td>Text 2C</td>
-    </tr>
-</table>
-
-
 <ul>
     <li>url：/AbilityTest/user/login</li>
     <li>type：post</li>
     <li>description：登录系统接口</li>
 </ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>account</td><td>String</td><td>账号</td><td>是</td><td>“kk”</td>
+    </tr>
+    <tr>
+        <td>password</td><td>String</td><td>密码</td><td>是</td><td>“123456”</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>状态码：0/1/2</td><td>0</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>String</td><td>信息：“success”/“no this account”/“password is error”/“success”</td><td>“success”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>1</td>
+    </tr>
+    <tr>
+        <td>type</td><td>int</td><td>类型：0--系统管理员，1--测试对象</td><td>0</td>
+    </tr>
+</table>
 
-<ol>
-    <li>传参名	     类型	     意义	    是否必须	 例子</li>
-    <li>account	     String	     账号	    是	        “kk”</li>
-    <li>password     String	     密码	    是	       “123456”</li>
-</ol>
-
-
-
-返回参数名	类型	     意义	                                例子
-
-status	        int	    状态码：0/1/2	                         0
-
-msg	       String       信息：“success”
- “no this account”
-“password is error”	               “success”
-
-total	        int	    总条数	                                 1
-
-type	        int	    类型：0--系统管理员，1--测试对象	         0
 
 
 
