@@ -52,10 +52,6 @@
 </table>
 
 
-
-
-
-
 -------------------------------------------------------------------------------------------------------------------------------
 <ul>
     <li>url：/AbilityTest/user/regist</li>
@@ -87,7 +83,7 @@
 </table>
 <table>
     <tr>
-        <th>传参名</th><th>类型</th><th>意义</th><th>例子</th>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
     </tr>
     <tr>
         <td>status</td><td>int</td><td>状态码：0/1/2</td><td>2</td>
@@ -104,24 +100,38 @@
     </tr>
 </table>
 
-
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-url：/AbilityTest/user/ loadLastResult
-type：get
-
-description：登录系统接口
-
-传参名	类型	意义	是否必须	例子
-person_id	int	残疾人id	是	“1”
-
-返回参数名	类型	意义	例子
-status	int	状态码：0/1	0
-msg	String	信息：“success”/“this person_id has not result!”	“success”
-total	int	总条数	1
-test	String	测试答题情况，每一部分有答题：1/无答题：0。以'',''分割开	‘1,0,0,1,0,1,1,0,1’
-
+<ul>
+    <li>url：/AbilityTest/user/loadLastResult</li>
+    <li>type：get</li>
+    <li>description：登录系统接口</li>
+</ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>person_id</td><td>int</td><td>残疾人id</td><td>是</td><td>“1”</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>状态码：0/1</td><td>0</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>String</td><td>信息：“success”/“this person_id has not result!”</td><td>“success”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>1</td>
+    </tr>
+    <tr>
+        <td>test</td><td>String</td><td>测试答题情况，每一部分有答题：1/无答题：0。以'',''分割开</td><td>‘1,0,0,1,0,1,1,0,1’</td>
+    </tr>
+</table>
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
