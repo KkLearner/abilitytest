@@ -57,38 +57,52 @@
 
 
 -------------------------------------------------------------------------------------------------------------------------------
-
-
-
-url：/AbilityTest/user/regist
-
-type：post
-
-description：注册系统接口
-
-传参名	             类型	   意义	               是否必须	 例子
-
-name	            String	残疾人姓名	         是	“kk”
-
-phone	            String	联系电话	         是	“123456”
-
-id_number           String	证件号码	         是	“J051”
-
-sex	            int	        性别	                 是	  1
-
-disability_type	    int	        残疾类型：0--肢体残疾
-1--听力残疾
-2--智力残疾
-3--视力残疾	  是	  0
-
-
-
-返回参数名	类型	意义	例子
-
-status	int	状态码：0/1/2	2
-msg	String	信息：“success!But user is not exist!”/“success!No Submission!”/” success!Have Submission!”	“success!Have Submission!”
-total	int	总条数	0
-personid	int	残疾人id	1
+<ul>
+    <li>url：/AbilityTest/user/regist</li>
+    <li>type：post</li>
+    <li>description：注册系统接口</li>
+</ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>name</td><td>String</td><td>残疾人姓名</td><td>是</td><td>“kk”</td>
+    </tr>
+    <tr>
+        <td>phone</td><td>String</td><td>联系电话</td><td>是</td><td>“123456”</td>
+    </tr>
+    <tr>
+        <td>id_number</td><td>String</td><td>证件号码</td><td>是</td><td>“123456”</td>
+    </tr>
+    <tr>
+        <td>sex</td><td>int</td><td>性别</td><td>是</td><td>“123456”</td>
+    </tr>
+    <tr>
+        <td>disability_type</td><td>int</td><td>残疾类型：0--肢体残疾<br>
+                                                  1--听力残疾<br>
+                                                   2--智力残疾<br>
+                                                   3--视力残疾</td><td>是</td><td>0</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>状态码：0/1/2</td><td>2</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>String</td><td>信息：“success!But user is not exist!”/“success!No Submission!”/” success!Have Submission!”	“success!Have Submission!”</td>
+        <td>“success!Have Submission!”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>0</td>
+    </tr>
+    <tr>
+        <td>personid</td><td>int</td><td>残疾人id</td><td>1</td>
+    </tr>
+</table>
 
 
 
