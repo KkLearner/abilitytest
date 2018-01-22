@@ -1,0 +1,79 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登陆</title>
+    <meta name="description" content="Login Page" />
+    <meta name="keywords" content="Online test login" />
+    <meta name="author" content="MikeFeng" />
+    <link rel="shortcut icon" href="/AbilityTest/resource/images/title_icon.png">
+    <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/css/login-page.css">
+</head>
+<body>
+
+<div class="header">
+    <span>在线测评系统</span>
+</div>
+
+<h1>新建账号</h1>
+
+<input type="text" placeholder="请输入新账号" name="account" id="account">
+<input type="password" placeholder="请输入您的密码" name="password" id="password1">
+<input type="password" placeholder="请确认您的密码" name="password" id="password2">
+<br><br>
+<button id="submit">提交</button>
+
+<script>
+    var button = document.getElementById('submit');
+    var xmlhttp;
+    var new_account_data;
+
+    function query(url,callbackfunction) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
+        xmlhttp.open("POST", encodeURI(url), true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xmlhttp.responseType = 'json';
+        xmlhttp.send( new_account_data );
+    }
+
+    var submit_button = document.getElementById('submit');
+    submit_button.addEventListener('click',function () {
+        var account = document.getElementById('account');
+        var password1 = document.getElementById('password1');
+        var password2 = document.getElementById('password2');
+        if (password1.value == password2.value){
+            new_account_data = "&account="+account.value+"&password="+password1.value;
+            console.log('new_account_data: '+new_account_data);
+            query("/AbilityTest/user/addAdministrator",function () {
+                var return_info = xmlhttp.response;
+                if(return_info['msg'] == "success"){
+                    alert('新建账号成功！页面即将跳转');
+                    window.location.href = "/AbilityTest/backstage";
+                }
+                else if(return_info['msg'] == "this account exist"){
+                    account.value = "";
+                    password1.value = "";
+                    password2.value = "";
+                    alert('此账号已经存在，请重新填写！');
+                }
+                else if (return_info['msg'] == "inside error"){
+                    alert('内部服务器错误');
+                }
+                console.log(xmlhttp.response);
+            });
+        }
+        else {
+            alert('您两次输入的密码不一致，请再次确认');
+            password1.value = "";
+            password2.value = "";
+        }
+
+
+    })
+</script>
+
+</body>
+</html>

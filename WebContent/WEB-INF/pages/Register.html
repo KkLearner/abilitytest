@@ -38,10 +38,12 @@
 <script>
     var button = document.getElementById('submit');
     var xmlhttp;
+    var register_info_data;
+    var input_id_number;
     button.addEventListener('click',function () {
         var input_name = document.getElementById('input_name').value;           //输入的姓名
         var input_phone = document.getElementById('input_phone').value;         //输入的手机号码
-        var input_id_number = document.getElementById('input_id_number').value;//输入的残疾人证号
+        input_id_number = document.getElementById('input_id_number').value;//输入的残疾人证号
 
         var radios = document.getElementsByName('sex');
         var radios_value;                                                            //选择的性别
@@ -52,34 +54,68 @@
         }
 
         var selects = document.getElementById('disability_type');
-        var selects_index = selects.selectedIndex;
+        var selects_index = selects.selectedIndex;//残障类型
 //        var selects_value = selects.options[selects_index].text;
 
-
         console.log('姓名：'+input_name+'  电话号码：'+input_phone+'   残疾人证号：'+input_id_number+'   性别：'+radios_value+'   残疾类别：'+selects_index);
-        var fill_personal_json_data = JSON.stringify( {name:input_name,phone:input_phone,id_number:input_id_number,sex:radios_value,disability_type:selects_index} );
-        console.log(fill_personal_json_data);
+//        fill_personal_json_data = JSON.stringify( {name:input_name,phone:input_phone,id_number:input_id_number,sex:radios_value,disability_type:selects_index} );
+        register_info_data = "name="+input_name+"&phone="+input_phone+"&id_number="+input_id_number+"&sex="+radios_value+"&disability_type="+selects_index;
+        console.log(register_info_data);
 
         Register();
     });
 
 
-
     function query(url,callbackfunction) {
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
-        xmlhttp.open("POST", url, true);
+        xmlhttp.open("POST", encodeURI(url), true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xmlhttp.responseType = 'json';
-        xmlhttp.send();
+        xmlhttp.send(register_info_data);
     }
 
     function Register() {
         query("/AbilityTest/user/regist",function() {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                var status = xmlhttp.response;
-                //****************测试时候再补充处理代码***************************
-            }
-        });
+                var register_return_info = xmlhttp.response;
+                console.log(register_return_info);
+                if(register_return_info['status'] == 0){ //从未注册
+                    console.log('从未注册');
+                    localStorage.setItem('id_number',input_id_number);
+                    window.location.href = "/AbilityTest/test1";
+                }
+
+                else if (register_return_info['status'] == 1){ //曾经注册但从未提交
+                    console.log('曾经注册但从未提交');
+                    var choose1 = confirm('您是否曾经在本网站注册？');
+                    if (choose1 == true){
+                        window.location.href = "/AbilityTest/test1";
+                    }
+                    else {//考生否认曾经注册
+                        alert('您的情况较特殊，请联系工作人员处理');//****************后续可能需要添加更多处理，待补充***************************
+                    }
+                }
+
+                else {  //曾经注册并且曾经提交
+                    console.log('曾经注册并且曾经提交');
+                    var choose2 = confirm('您是否曾在本网站注册并提交？');
+                    if (choose2 == true) {
+                        var choose3 = confirm('您是否继续上次的作答？');
+                        if (choose3 == true) {//继续上次作答
+                            //*******************************************************
+                        }
+                        else {//开始新一次的作答
+                            window.location.href = "/AbilityTest/test1";
+                        }
+                    }
+                    else {//考生否认曾经注册并提交
+                        alert('您的情况较特殊，请联系工作人员处理');
+                    }
+                }
+
+            }//回调处理end(status==200)
+        });//query end
     }
 
 </script>
