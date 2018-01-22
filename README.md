@@ -229,20 +229,39 @@
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-url：/AbilityTest/user/addAdministrator
-type：post
-description：添加管理员接口
-传参名	类型	意义	是否必须	例子
-account	String	账号	是	“kk”
-password	String	密码	是	“123456”
-type	int	类型：0--系统管理员，1--普通管理员，默认1	选填	1
-
-返回参数名	类型	意义	例子
-status	int	状态码：0/1/2	0
-msg	String	信息：“success”
-“this account exist”
-“inside error”	“success”
-total	int	总条数	0
+<ul>
+    <li>url：/AbilityTest/user/addAdministrator</li>
+    <li>type：post</li>
+    <li>description：添加管理员接口</li>
+</ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>account</td><td>String</td><td>账号</td><td>是</td><td>“kk”</td>
+    </tr>
+    <tr>
+        <td>password</td><td>String</td><td>密码</td><td>是</td><td>“123456”</td>
+    </tr>
+    <tr>
+        <td>type</td><td>int</td><td>类型：0--系统管理员，1--普通管理员，默认1</td><td>选填</td><td>1</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>	状态码：0/1/2</td><td>0</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>String</td><td>信息：“success”/“this account exist”/“inside error”</td><td>“success”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>0</td>
+    </tr>
+</table>
 
 
 
