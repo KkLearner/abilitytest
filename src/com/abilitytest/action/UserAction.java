@@ -142,11 +142,14 @@ public class UserAction {
 	@RequestMapping(value="/updatePsw",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updatePsw(@RequestParam(value="account") String account
-			,@RequestParam(value="password") String password){
+			,@RequestParam(value="oldpassword") String oldpassword
+			,@RequestParam(value="newpassword") String newpassword){
 		Administrator person = administratorService.findByUniqueProperty("account", account);
 		if(person == null)
-			return ResultReturn.setMap(1, "no this account", 0, null);		
-		person.setPassword(password);
+			return ResultReturn.setMap(1, "no this account", 0, null);
+		else if(!person.getPassword().equals(oldpassword))
+			return ResultReturn.setMap(2, "password is error", 0, null);
+		person.setPassword(newpassword);
 		administratorService.update(person);
 		return ResultReturn.setMap(0, "success", 0, null);	
 	}

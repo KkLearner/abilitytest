@@ -8,4 +8,5 @@ import com.abilitytest.service.QuestionsService;
 @Service("questionsService")
 public class QuestionsServiceImpl extends BaseServiceImpl<Questions> implements QuestionsService {
 
+
 }
