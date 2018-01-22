@@ -1,3 +1,28 @@
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size:11px;
+        color:#333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+    }
+    table.gridtable th {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #dedede;
+    }
+    table.gridtable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #666666;
+        background-color: #ffffff;
+    }
+</style>
 # abilitytest
 
 先读笔记：
@@ -17,6 +42,20 @@
 
 
 --------------------------------------------------------------------------------------------------------------------------------
+
+<!-- Table goes in the document BODY -->
+<table class="gridtable">
+    <tr>
+        <th>Info Header 1</th><th>Info Header 2</th><th>Info Header 3</th>
+    </tr>
+    <tr>
+        <td>Text 1A</td><td>Text 1B</td><td>Text 1C</td>
+    </tr>
+    <tr>
+        <td>Text 2A</td><td>Text 2B</td><td>Text 2C</td>
+    </tr>
+</table>
+
 
 <ul>
     <li>url：/AbilityTest/user/login</li>
@@ -197,5 +236,4 @@ answer	String	该部分24题的答案，以’,’分割开，没有答用-1表�
 
 usetime	time	该部分答题所用时间	05:46:41
 finishtime	datetime	该部分完成时间	2018-01-21 10:46:25
-
 
