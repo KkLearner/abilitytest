@@ -198,16 +198,33 @@
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-url：/AbilityTest/user/ checkAccountExist
-type：get
-description：检查该账号是否存在
-传参名	类型	意义	是否必须	例子
-account	String	账号	是	“kk”
-
-返回参数名	类型	意义	例子
-status	int	状态码：0/1	0
-msg	String	信息：“account is exist”/“no this account”	“success”
-total	int	总条数	0
+<ul>
+    <li>url：/AbilityTest/user/checkAccountExist</li>
+    <li>type：get</li>
+    <li>description：检查该账号是否存在</li>
+</ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>account</td><td>String</td><td>账号</td><td>是</td><td>“kk”</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>状态码：0/1</td><td>0</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>String</td><td>信息：“account is exist”/“no this account”</td><td>“success”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>0</td>
+    </tr>
+</table>
 
 
 
