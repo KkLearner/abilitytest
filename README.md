@@ -136,29 +136,63 @@
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-url：/AbilityTest/test/ getTestList
-type：post
-description：获取测试结果列表
-传参名	类型	意义	是否必须	例子
-name	String	用户名 	选填	“kk”
-id_number	String	证件号 	选填	“1”
-startTime	String	开始时间,格式为yyyy-mm-dd(表示该日的零时零分)	选填	“2018-01-19”
-endTime	String	结束时间,格式为yyyy-mm-dd(表示该日的零时零分)	选填	“2018-01-20”
-pageNum	int	页号，默认1	选填	1
-pageSize	int	页面大小，默认10	选填	10
-
-返回参数名	类型	意义	例子
-status	int	状态码：0	0
-msg	String	信息：“success”	“success”
-total	int	总条数	5
-name	String	姓名	‘kk’
-id_number	String	残疾证件号	‘1’
-modifytime
-String	最后一次修改时间	"2018-01-18 16:45:08"
-
-testid	int	测试id	1
-personid	int	残疾人id	1
-
+<ul>
+    <li>url：/AbilityTest/user/getTestList</li>
+    <li>type：post</li>
+    <li>description：获取测试结果列表</li>
+</ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>name</td><td>String</td><td>用户名</td><td>选填</td><td>“kk”</td>
+    </tr>
+    <tr>
+        <td>id_number</td><td>String</td><td>证件号</td><td>选填</td><td>“1”</td>
+    </tr>
+    <tr>
+        <td>startTime</td><td>String</td><td>开始时间,格式为yyyy-mm-dd(表示该日的零时零分)</td><td>选填</td><td>“2018-01-19”</td>
+    </tr>
+    <tr>
+        <td>endTime</td><td>String</td><td>结束时间,格式为yyyy-mm-dd(表示该日的零时零分)</td><td>选填</td><td>“2018-01-20”</td>
+    </tr>
+    <tr>
+        <td>pageNum</td><td>int</td><td>页号，默认1</td><td>选填</td><td>1</td>
+    </tr>
+    <tr>
+        <td>pageSize</td><td>int</td><td>页面大小，默认10</td><td>选填</td><td>10</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>状态码：0</td><td>0</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>int</td><td>残疾人id</td><td>“1”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>5</td>
+    </tr>
+    <tr>
+        <td>name</td><td>String</td><td>姓名</td><td>“kk”</td>
+    </tr>
+    <tr>
+        <td>id_number</td><td>String</td><td>残疾证件号</td><td>“1”</td>
+    </tr>
+    <tr>
+        <td>modifytime</td><td>String</td><td>最后一次修改时间</td><td>"2018-01-18 16:45:08"</td>
+    </tr>
+    <tr>
+        <td>testid</td><td>int</td><td>残疾人id</td><td>1</td>
+    </tr>
+    <tr>
+        <td>personid</td><td>int</td><td>残疾人id</td><td>1</td>
+    </tr>
+</table>
 注：选填表示可以不加入该参数
 
 
