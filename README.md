@@ -3,10 +3,10 @@
 先读笔记：
 
 1.由于系统加入了登录认证，所以还没有登录访问非登录页面或调用非登录接口都会被控制跳转到登录页面。
-  因此，请使用者先在登录页面进行登录或者在test页面调用登录接口进行登录。
+因此，请使用者先在登录页面进行登录或者在test页面调用登录接口进行登录。
 
 2.为区别正常页面和测试接口页面，现修改测试接口页面为：主机号:端口号/AbilityTest/interfacetest/test，
-  例：localhost:8080/AbilityTest/interfacetest/test
+例：localhost:8080/AbilityTest/interfacetest/test
 
 3.添加了新页面后，想进入该页面必须在com.abilitytest.action. IndexAction类下模仿其他写法来设置入口
 
@@ -18,18 +18,17 @@
 
 --------------------------------------------------------------------------------------------------------------------------------
 
+<ul>
+    <li>url：/AbilityTest/user/login</li>
+    <li>type：post</li>
+    <li>description：登录系统接口</li>
+</ul>
 
-url：/AbilityTest/user/login
-
-type：post
-
-description：登录系统接口
-
-传参名	     类型	     意义	    是否必须	 例子
-
-account	     String	     账号	    是	        “kk”
-
-password     String	     密码	    是	       “123456”
+<ol>
+    <li>传参名	     类型	     意义	    是否必须	 例子</li>
+    <li>account	     String	     账号	    是	        “kk”</li>
+    <li>password     String	     密码	    是	       “123456”</li>
+</ol>
 
 
 
@@ -38,8 +37,8 @@ password     String	     密码	    是	       “123456”
 status	        int	    状态码：0/1/2	                         0
 
 msg	       String       信息：“success”
-                                  “no this account”
-                                  “password is error”	               “success”
+ “no this account”
+“password is error”	               “success”
 
 total	        int	    总条数	                                 1
 
@@ -67,12 +66,12 @@ phone	            String	联系电话	         是	“123456”
 
 id_number           String	证件号码	         是	“J051”
 
-sex	            int	        性别	                 是	  1 
- 
+sex	            int	        性别	                 是	  1
+
 disability_type	    int	        残疾类型：0--肢体残疾
-                                          1--听力残疾
-                                          2--智力残疾
-                                          3--视力残疾	  是	  0
+1--听力残疾
+2--智力残疾
+3--视力残疾	  是	  0
 
 
 
@@ -123,7 +122,7 @@ total	int	总条数	5
 name	String	姓名	‘kk’
 id_number	String	残疾证件号	‘1’
 modifytime
-	String	最后一次修改时间	"2018-01-18 16:45:08"
+String	最后一次修改时间	"2018-01-18 16:45:08"
 
 testid	int	测试id	1
 personid	int	残疾人id	1
