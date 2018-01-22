@@ -299,23 +299,49 @@
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-url：/AbilityTest/test/ getAllResults
-type：get
-description：获取某次测试的测试结果
-传参名	类型	意义	是否必须	例子
-testid	int	测试id 	是	1
-
-返回参数名	类型	意义	例子
-status	int	状态码：0	0
-msg	String	信息：“success”	“success”
-total	int	总条数	5
-testNumber	int	测试号码	1
-name	String	姓名	‘kk’
-id_number	String	残疾证件号	‘1’
-answer	String	该部分24题的答案，以’,’分割开，没有答用-1表示	‘A,B,B,B,B,B,B,C,C,D,A,C,B
-,D,B,C,A,B,D,B,A,C,B,D‘
-
-usetime	time	该部分答题所用时间	05:46:41
-finishtime	datetime	该部分完成时间	2018-01-21 10:46:25
+<ul>
+    <li>url：/AbilityTest/user/getAllResults</li>
+    <li>type：get</li>
+    <li>description：获取某次测试的测试结果</li>
+</ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>testid</td><td>int</td><td>测试id</td><td>是</td><td>1</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>状态码：0</td><td>0</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>String</td><td>信息：“success”</td><td>“success”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>5/td>
+    </tr>
+    <tr>
+        <td>testNumber</td><td>int</td><td>测试号码</td><td>1</td>
+    </tr>
+    <tr>
+        <td>name</td><td>String</td><td>姓名</td><td>‘kk’</td>
+    </tr>
+    <tr>
+        <td>id_number</td><td>String</td><td>残疾证件号</td><td>‘1’</td>
+    </tr>
+    <tr>
+        <td>answer</td><td>String</td><td>该部分24题的答案，以’,’分割开，没有答用-1表示</td><td>‘A,B,B,B,B,B,B,C,C,D,A,C,B,D,B,C,A,B,D,B,A,C,B,D‘</td>
+    </tr>
+    <tr>
+        <td>usetime</td><td>time</td><td>该部分答题所用时间</td><td>05:46:41</td>
+    </tr>
+    <tr>
+        <td>finishtime</td><td>datetime</td><td>该部分完成时间</td><td>2018-01-21 10:46:25</td>
+    </tr>
+</table>
 
