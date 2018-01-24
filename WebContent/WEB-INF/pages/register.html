@@ -1,0 +1,123 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考生个人信息填写</title>
+    <meta name="description" content="Candidate fill in personal information " />
+    <meta name="keywords" content="name, gender, phone number, government-issued ID, type" />
+    <meta name="author" content="MikeFeng" />
+    <link rel="shortcut icon" href="/AbilityTest/resource/images/title_icon.png">
+    <link rel="stylesheet" href="/AbilityTest/resource/css/login-page.css">
+</head>
+<body>
+
+<div class="header">
+    <span>在线测评系统</span>
+</div>
+
+<h1>注册</h1>
+<input type="text" placeholder="请输入您的姓名" name="name" id="input_name">
+<input type="text" placeholder="请输入您的联系电话" name="phone" id="input_phone">
+<input type="text" placeholder="请输入您的残疾人证号" name="id_number" id="input_id_number">
+性别<input type="radio" id="gender1" name="sex" value="1" checked>男
+<input type="radio" id="gender2" name="sex" value="0">女
+<br>
+残疾类别
+<select  id="disability_type">
+    <option value="0">肢体残障</option>
+    <option value="1">听力残障</option>
+    <option value="2">智力残障</option>
+    <option value="3">视力残障</option>
+</select>
+<br><br>
+<button id="submit" >确定</button>
+
+
+<script>
+    var button = document.getElementById('submit');
+    var xmlhttp;
+    var register_info_data;
+    var input_id_number;
+    button.addEventListener('click',function () {
+        var input_name = document.getElementById('input_name').value;           //输入的姓名
+        var input_phone = document.getElementById('input_phone').value;         //输入的手机号码
+        input_id_number = document.getElementById('input_id_number').value;//输入的残疾人证号
+
+        var radios = document.getElementsByName('sex');
+        var radios_value;                                                            //选择的性别
+        for (var i=0; i<radios.length; i++) {
+            if(radios[i].checked==true) {
+                radios_value = radios[i].value;
+            }
+        }
+
+        var selects = document.getElementById('disability_type');
+        var selects_index = selects.selectedIndex;//残障类型
+//        var selects_value = selects.options[selects_index].text;
+
+        console.log('姓名：'+input_name+'  电话号码：'+input_phone+'   残疾人证号：'+input_id_number+'   性别：'+radios_value+'   残疾类别：'+selects_index);
+//        fill_personal_json_data = JSON.stringify( {name:input_name,phone:input_phone,id_number:input_id_number,sex:radios_value,disability_type:selects_index} );
+        register_info_data = "name="+input_name+"&phone="+input_phone+"&id_number="+input_id_number+"&sex="+radios_value+"&disability_type="+selects_index;
+        console.log(register_info_data);
+
+        Register();
+    });
+
+
+    function query(url,callbackfunction) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
+        xmlhttp.open("POST", encodeURI(url), true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xmlhttp.responseType = 'json';
+        xmlhttp.send(register_info_data);
+    }
+
+    function Register() {
+        query("/AbilityTest/user/regist",function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var register_return_info = xmlhttp.response;
+                console.log(register_return_info);
+                if(register_return_info['status'] == 0){ //从未注册
+                    console.log('从未注册');
+                    localStorage.setItem('id_number',input_id_number);
+                    window.location.href = "/AbilityTest/test1";
+                }
+
+                else if (register_return_info['status'] == 1){ //曾经注册但从未提交
+                    console.log('曾经注册但从未提交');
+                    var choose1 = confirm('您是否曾经在本网站注册？');
+                    if (choose1 == true){
+                        window.location.href = "/AbilityTest/test1";
+                    }
+                    else {//考生否认曾经注册
+                        alert('您的情况较特殊，请联系工作人员处理');//****************后续可能需要添加更多处理，待补充***************************
+                    }
+                }
+
+                else {  //曾经注册并且曾经提交
+                    console.log('曾经注册并且曾经提交');
+                    var choose2 = confirm('您是否曾在本网站注册并提交？');
+                    if (choose2 == true) {
+                        var choose3 = confirm('您是否继续上次的作答？');
+                        if (choose3 == true) {//继续上次作答
+                            //*******************************************************
+                        }
+                        else {//开始新一次的作答
+                            window.location.href = "/AbilityTest/test1";
+                        }
+                    }
+                    else {//考生否认曾经注册并提交
+                        alert('您的情况较特殊，请联系工作人员处理');
+                    }
+                }
+
+            }//回调处理end(status==200)
+        });//query end
+    }
+
+</script>
+</body>
+</html>

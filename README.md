@@ -279,7 +279,10 @@
         <td>account</td><td>String</td><td>账号</td><td>是</td><td>“kk”</td>
     </tr>
     <tr>
-        <td>password</td><td>String</td><td>密码</td><td>是</td><td>“123456”</td>
+        <td>oldpassword</td><td>String</td><td>旧密码</td><td>是</td><td>“123456”</td>
+    </tr>
+    <tr>
+        <td>newpassword</td><td>String</td><td>新密码</td><td>是</td><td>“123”</td>
     </tr>
 </table>
 <table>
