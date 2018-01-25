@@ -1,118 +1,242 @@
 <!--<!DOCTYPE html>-->
 <html lang="en" class="no-js">
-	<head>
+<head>
 
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>测试一</title>
-		<meta name="description" content="Test 1" />
-		<meta name="keywords" content="page transition, css animation, website, effect, css3, jquery" />
-		<meta name="author" content="MikeFeng" />
-		<link rel="shortcut icon" href="../../resource/images/title_icon.png">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>测试一</title>
+	<meta name="description" content="Test 1" />
+	<meta name="keywords" content="page transition, css animation, website, effect, css3, jquery" />
+	<meta name="author" content="MikeFeng" />
+	<link rel="shortcut icon" href="../../resource/images/title_icon.png">
 
-		<!--<link rel="stylesheet" type="text/css" href="../../resource/css/component.css" />-->
-		<!--<link rel="stylesheet" type="text/css" href="../../resource/css/animations.css" />-->
+	<!--<link rel="stylesheet" type="text/css" href="../../resource/css/component.css" />-->
+	<!--<link rel="stylesheet" type="text/css" href="../../resource/css/animations.css" />-->
 
-		<link rel="stylesheet" type="text/css" href="../../resource/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../../resource/css/teststyle.css">
-		<script src="../../resource/js/modernizr.custom.js"></script>
-	</head>
-	<body>
+	<link rel="stylesheet" type="text/css" href="../../resource/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../resource/css/teststyle.css">
+	<script src="../../resource/js/modernizr.custom.js"></script>
+</head>
+<body>
 
 
-	<div class="container-fluid content">
-		<div class="row header">
-			<div class="col-2">
-				<h2 class="test-part">测试一：
-					<br>基本概念
-				</h2>
-			</div>
-			<div class="col-8 title-text">
-				<h4>1、请指出蓝色的选项</h4>
-			</div>
-			<div class="col-2">
-				<!-- *****有一部分题目需要在此处填充图片（如第一部分第五题）***** -->
-			</div>
+<div class="container-fluid content">
+	<div class="row header">
+		<div class="col-2">
+			<h2 class="test-part">测试一：
+				<br>基本概念
+			</h2>
 		</div>
 
-		<div class="row middle">
-			<div class="col-2">
-				<img src="../../resource/images/left_ok.png" class="pre-title">
-			</div>
-			<div class="col-8 option">
-				<div class="row">
-					<div class="col title-img-div">
-						<img src="../../resource/images/test1_temp/test1_A.png" class="title-img">
-					</div>
-					<div class="col">
-						<img src="../../resource/images/test1_temp/test1_B.png" class="title-img">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col title-option">
-						<span>A</span>
-					</div>
-					<div class="col title-option">
-						<span>B</span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col">
-						<img src="../../resource/images/test1_temp/test1_C.png" class="title-img">
-					</div>
-					<div class="col">
-						<img src="../../resource/images/test1_temp/test1_D.png" class="title-img">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col title-option">
-						<span>C</span>
-					</div>
-					<div class="col title-option">
-						<span>D</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-2 next-title-div">
-				<img src="../../resource/images/right_ok.png" class="next-title">
-			</div>
+		<div class="col-8 title-text">
+			<h4>1、请指出蓝色的选项</h4>
 		</div>
-
-		<div class="row footer">
-			<div class="col functions-img">
-				&nbsp;
-			</div>
-			<div class="col functions-img">
-				<img src="../../resource/images/list.png" class="img-button">
-			</div>
-			<div class="col functions-img">
-				<img src="../../resource/images/play.png" class="img-button">
-			</div>
-			<div class="col functions-img">
-				<img src="../../resource/images/Chinese.jpg" class="img-button">
-			</div>
-			<div class="col functions-img">
-				<img src="../../resource/images/Canton.jpg" class="img-button">
-			</div>
-			<div class="col functions-img">
-				<img src="../../resource/images/save.png" class="img-button">
-			</div>
-			<div class="col functions-img">
-				&nbsp;
-			</div>
+		<div class="col-2">
+			<!-- *****有一部分题目需要在此处填充图片（如第一部分第五题）***** -->
 		</div>
 	</div>
 
-	<script>
-		var id_number = localStorage.getItem('id_number');
-		console.log('id_number:'+id_number);
+	<div class="row middle">
+		<div class="col-2">
+			<img src="../../resource/images/left_ok.png" class="pre-title" id="pre-button">
+		</div>
 
-	</script>
+		<div class="col-8 option">
+			<div class="row">
+				<div class="col col-div">
+					<div class="post" id="optionA-div">
+						<img src="../../resource/test1/images/title1_A.png" id="optionA-img">
+						<div class="post-s" id="optionA">
+							<h2>A</h2>
+						</div>
+					</div>
+				</div>
+				<div class="col col-div">
+					<div class="post" id="optionB-div">
+						<img src="../../resource/test1/images/title1_B.png" id="optionB-img">
+						<div class="post-s" id="optionB">
+							<h2>B</h2>
+						</div>
+					</div>
+				</div>
+			</div><!-- row end -->
+			<!--<div class="row">-->
+				<!--<div class="col title-option">-->
+					<!--<span>A</span>-->
+				<!--</div>-->
+				<!--<div class="col title-option">-->
+					<!--<span>B</span>-->
+				<!--</div>-->
+			<!--</div>-->
+			<div class="row">
+				<div class="col col-div">
+					<!--<img src="../../resource/images/test1_temp/test1_C.png" class="title-img" id="optionC">-->
+					<div class="post" id="optionC-div">
+						<img src="../../resource/test1/images/title1_C.png" id="optionC-img">
+						<div class="post-s" id="optionC">
+							<h2>C</h2>
+						</div>
+					</div>
+				</div>
+				<div class="col col-div">
+					<!--<img src="../../resource/images/test1_temp/test1_D.png" class="title-img" id="optionD">-->
+					<div class="post" id="optionD-div">
+						<img src="../../resource/test1/images/title1_D.png" id="optionD-img">
+						<div class="post-s" id="optionD">
+							<h2>D</h2>
+						</div>
+					</div>
+				</div>
+			</div><!-- row end -->
+		</div><!-- col-8 end -->
 
-		<script src="../../resource/js/jquery.min.js"></script>
-		<script src="../../resource/js/jquery.dlmenu.js"></script>
-		<script src="../../resource/js/testtranstition.js"></script>
-		<!--<script src="../../resource/js/pagetransitions.js"></script>-->
-	</body>
+		<div class="col-2 next-title-div">
+			<img src="../../resource/images/right_ok.png" class="next-title" id="next-button">
+		</div>
+
+	</div>
+
+	<div class="row footer">
+		<div class="col functions-img">
+			&nbsp;
+		</div>
+		<div class="col functions-img">
+			<img src="../../resource/images/list.png" class="img-button">
+		</div>
+		<div class="col functions-img">
+			<img src="../../resource/images/play.png" class="img-button">
+		</div>
+		<div class="col functions-img">
+			<img src="../../resource/images/Chinese.jpg" class="img-button" id="Madarin"><!-- 普通话 -->
+		</div>
+		<div class="col functions-img">
+			<img src="../../resource/images/Canton.jpg" class="img-button" id="Cantonese"><!-- 粤语 -->
+		</div>
+		<div class="col functions-img">
+			<img src="../../resource/images/save.png" class="img-button">
+		</div>
+		<div class="col functions-img">
+			&nbsp;
+		</div>
+	</div>
+
+</div><!-- container-fluid end -->
+
+
+<script>
+	var id_number = localStorage.getItem('id_number');
+	console.log('id_number:'+id_number);
+
+	var num = 1;
+	var cur_test_part = "test"+num;
+	var title = 1;
+
+	var pre_button = document.getElementById('pre-button');
+	var next_button = document.getElementById('next-button');
+	var optionA_img = document.getElementById('optionA-img');
+	var optionB_img = document.getElementById('optionB-img');
+	var optionC_img = document.getElementById('optionC-img');
+	var optionD_img = document.getElementById('optionD-img');
+
+	pre_button.addEventListener('click',function () {
+		title--;
+		optionA_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_A.png";
+		optionB_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_B.png";
+		optionC_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_C.png";
+		optionD_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_D.png";
+	});
+
+	next_button.addEventListener('click',function () {
+		title++;
+		optionA_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_A.png";
+		optionB_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_B.png";
+		optionC_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_C.png";
+		optionD_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_D.png";
+	});
+
+	var auto_play = true;//*******************待补充*****************************
+	var madarin = document.getElementById('Madarin');//页面下方“普通话”图标
+	var mandarin_audio;
+	var cantonese_audio;
+
+	madarin.addEventListener('click',function () {
+		mandarin_audio = new Audio('../../resource/test1/Mandarin/0.mp3');
+		mandarin_audio.play();
+	});
+
+	var cantonese = document.getElementById('Cantonese');//页面下方“粤语”图标
+	cantonese.addEventListener('click',function () {
+		cantonese_audio = new Audio('../../resource/test1/Cantonese/0.mp3');
+		cantonese_audio.play();
+	});
+
+
+	var optionA_div = document.getElementById('optionA-div');
+	var optionB_div = document.getElementById('optionB-div');
+	var optionC_div = document.getElementById('optionC-div');
+	var optionD_div = document.getElementById('optionD-div');
+
+	var optionA = document.getElementById('optionA');
+	var optionB = document.getElementById('optionB');
+	var optionC = document.getElementById('optionC');
+	var optionD = document.getElementById('optionD');
+
+	var pre_selected_element = null;
+	var cur_selected_element = null;
+
+	optionA_div.addEventListener('click',function () {
+		if(cur_selected_element == null){
+			cur_selected_element = optionA;
+		}
+		else {
+			pre_selected_element = cur_selected_element;
+			pre_selected_element.style.width = '0px';
+			cur_selected_element = optionA;
+		}
+		cur_selected_element.style.width = '280px';
+	});
+
+
+	optionB_div.addEventListener('click',function () {
+		if(cur_selected_element == null){
+			cur_selected_element = optionB;
+		}
+		else {
+			pre_selected_element = cur_selected_element;
+			pre_selected_element.style.width = '0px';
+			cur_selected_element = optionB;
+		}
+		cur_selected_element.style.width = '280px';
+	});
+
+
+	optionC_div.addEventListener('click',function () {
+		if(cur_selected_element == null){
+			cur_selected_element = optionC;
+		}
+		else {
+			pre_selected_element = cur_selected_element;
+			pre_selected_element.style.width = '0px';
+			cur_selected_element = optionC;
+		}
+		cur_selected_element.style.width = '280px';
+	});
+
+
+	optionD_div.addEventListener('click',function () {
+		if(cur_selected_element == null){
+			cur_selected_element = optionD;
+		}
+		else {
+			pre_selected_element = cur_selected_element;
+			pre_selected_element.style.width = '0px';
+			cur_selected_element = optionD;
+		}
+		cur_selected_element.style.width = '280px';
+	});
+
+</script>
+
+</body>
 </html>
