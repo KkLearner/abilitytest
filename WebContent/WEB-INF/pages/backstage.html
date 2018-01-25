@@ -21,7 +21,8 @@
 
 测试对象名：<input type="text" name="name" id="input_name">
 证件号码：<input type="text" name="id_number" id="input_id_number">
-测试时间：<input type="text" name="buildtime" id="input_buildtime">
+测试时间：<input type="date" name="starttime" id="input_starttime">
+-<input type="date" name="endtime" id="input_endtime">
 <button class="query-button" id="query">查询</button>
 &nbsp;&nbsp;
 <select id="select_function" onchange="SelectChange();">
@@ -89,7 +90,6 @@
 
 
 </div> <!-- container-fluid end -->
-
 
 
 
@@ -163,14 +163,14 @@
                         break;
                     case 5:
                         var test_list = results[i-1]['test'].split(",");
-                        var checked = "<input type='checkbox' checked='checked'>";
-                        var unchecked = "<input type='checkbox'>";
+                        var checked = "<input type='checkbox' checked='checked' disabled='disabled'>";
+                        var unchecked = "<input type='checkbox' disabled='disabled'>";
                         var part_list = ['一','二','三','四','五','六','七','八','九'];
                         col = document.createElement('div');//第一列
                         col.className = 'col-5 col-right';
                         var inner_content = "";
                         for(var k=0;k<9;k++){
-                            inner_content = inner_content+"第"+part_list[0]+'部分';
+                            inner_content = inner_content+"第"+part_list[k]+'部分';
                             if(test_list[k] == "0"){
                                 inner_content = inner_content+unchecked;
                             }
@@ -227,11 +227,12 @@
         var query_list = [
             document.getElementById('input_name').value,
             document.getElementById('input_id_number').value,
-            document.getElementById('input_buildtime').value
+            document.getElementById('input_starttime').value,
+            document.getElementById('input_endtime').value
         ];
-        var query_attr = ["&name=","&id_number=","&startTime="];
+        var query_attr = ["&name=","&id_number=","&startTime=","&endTime="];
         var query_url = "";//发起查询的url
-        for(var tt=0;tt<3;tt++){
+        for(var tt=0;tt<query_list.length;tt++){
             if(query_list[tt]!=""){
                 query_url += query_attr[tt]+query_list[tt];
             }

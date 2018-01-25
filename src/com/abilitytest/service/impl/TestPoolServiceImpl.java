@@ -30,9 +30,11 @@ public class TestPoolServiceImpl extends BaseServiceImpl<TestPool> implements Te
 		if(name!=null&&!((String)name).trim().equals(""))
 			builder.append(" and a.`name`='"+((String)name)+"'");
 		Object startTime = map.get("startTime");
+		if(startTime!=null&&!((String)startTime).trim().equals(""))
+			builder.append(" and b.modifytime>='"+(String)startTime+"'");
 		Object endTime = map.get("endTime");
-		if(startTime!=null&&endTime!=null&&!((String)startTime).trim().equals("")&&!((String)endTime).trim().equals(""))
-			builder.append(" and (b.modifytime between '"+((String)startTime)+"' and '"+((String)endTime)+"')");
+		if(endTime!=null&&!((String)endTime).trim().equals(""))
+			builder.append(" and b.modifytime<='"+((String)endTime)+" 23:59:59'");
 		Object pageNum = map.get("pageNum");
 		int pagenum = 1;
 		if(pageNum!=null&&!((String)pageNum).trim().equals("")&&Integer.parseInt((String)pageNum)>1)

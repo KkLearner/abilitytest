@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>load</title>
+</head>
+<body>
+<form id="form1">
+	<table width="500px" border="1px #FFFFFF soild">
+    	<tr>
+        	<th colspan="2" align="left">登录</th>
+        <tr>
+        <tr>
+        	<td width="30%">account(账号 必填)</td>
+            <td><input type="text" name="account"  id="account" value="kk"/></td>
+        </tr>
+        <tr>
+        	<td width="30%">password(密码 必填)</td>
+            <td><input type="password" name="password"  id="password" value="123456"/></td>
+        </tr> 
+        <tr>
+        	<td colspan="2" align="left">
+        	<input type="button" name="ok" id="ok" />ok</td>
+        <tr>
+    </table>
+</form>
+
+<span>20、一样东西花了这些钱<img alt="5角" src="/AbilityTest/resource/images/title_icon.png">,你付这些钱<img alt="5角" src="/AbilityTest/resource/images/title_icon.png">, 你要找回多少零钱？
+</span>
+<script type="text/javascript">
+var button = document.getElementById('ok');
+var xmlhttp;
+button.addEventListener('click',function () {
+    var input_account = document.getElementById('account').value;
+    var input_password = document.getElementById('password').value;
+    var login_json_data = JSON.stringify( {"account":input_account,"password":input_password} );
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            var status = xmlhttp.response;
+            console.log(status);
+            console.log("<%=session.getAttribute("userid")%>");
+            console.log("${sessionScope.userid}");
+            window.location.href = "/AbilityTest/register";
+        }
+    };
+    xmlhttp.open("POST", "/AbilityTest/user/login", true);
+    //xmlhttp.responseType = 'json';
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send('account=kk&password=123456');
+
+});//button EventListener end
+
+</script>
+</body>
+</html>

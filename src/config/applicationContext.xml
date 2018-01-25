@@ -26,10 +26,18 @@
 	
 	<!-- 数据源  数据库连接信息 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"> 
-        <property name="user" value="root"></property>  
-        <property name="password" value="123456"></property>  
-        <property name="driverClass" value="${dirverClass}"></property>  
-        <property name="jdbcUrl" value="${url}"></property>    
+       <property name="user">
+		    <value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+		    <value>${jdbc.password}</value>
+		</property>  
+        <property name="driverClass">
+		   <value>${dirverClass}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${url}</value>
+		</property>
     </bean> 
     
 	<!-- 会话工厂 -->

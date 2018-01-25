@@ -24,6 +24,7 @@
 <input type="password" placeholder="请确认您的密码" name="password" id="password2">
 <br><br>
 <button id="submit">提交</button>
+<button id="back" onclick="location='/AbilityTest/backstage'">返回</button>
 
 <script>
     var button = document.getElementById('submit');
@@ -49,20 +50,21 @@
             console.log('new_account_data: '+new_account_data);
             query("/AbilityTest/user/addAdministrator",function () {
                 var return_info = xmlhttp.response;
-                if(return_info['msg'] == "success"){
+                console.log(return_info);
+                if(return_info['status'] == 0){
                     alert('新建账号成功！页面即将跳转');
                     window.location.href = "/AbilityTest/backstage";
                 }
-                else if(return_info['msg'] == "this account exist"){
+                else if(return_info['status'] == 1){
                     account.value = "";
                     password1.value = "";
                     password2.value = "";
                     alert('此账号已经存在，请重新填写！');
                 }
-                else if (return_info['msg'] == "inside error"){
+                else if (return_info['status'] == 2){
                     alert('内部服务器错误');
                 }
-                console.log(xmlhttp.response);
+                //console.log(xmlhttp.response);
             });
         }
         else {
@@ -71,8 +73,9 @@
             password2.value = "";
         }
 
-
+		
     })
+    
 </script>
 
 </body>

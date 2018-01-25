@@ -15,7 +15,27 @@ public class IndexAction {
 	
 	@RequestMapping(value="register")
 	public String register(){
-		return "Register"; 
+		return "register"; 
+	}
+	
+	@RequestMapping(value="backstage")
+	public String backstage(){
+		return "backstage"; 
+	}
+	
+	@RequestMapping(value="adduser")
+	public String adduser(){
+		return "adduser"; 
+	}
+	
+	@RequestMapping(value="modifypassword")
+	public String modifypassword(){
+		return "modifypassword"; 
+	}
+	
+	@RequestMapping(value="test1")
+	public String test1(){
+		return "test1"; 
 	}
 	
 	@RequestMapping(value="interfacetest/{path}")
