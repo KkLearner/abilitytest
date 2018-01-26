@@ -12,21 +12,37 @@
 
 .post img{
     display: block;
-    width: 280px;
+    width: 220px;
     /*height: 400px;*/
 }
 
 .post-s{
     transition: 0.7s ease;
     width: 0;
-    /*height: 400px;*/
     position: absolute;
-    /*background: rgba(103,58,183,0.71);*/
     top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+.post-s h2{
+    color: black;
+    font-size: 50px;
+    border: 6px solid black;
+    padding: 10px 30px;
+    margin-top: 20px;
+}
+
+.option-div{
+    margin-left: -40px;
+    margin-top: 20%;
+    float: left;
+}
+
+.option-font-size{
+    font-size: 3rem;
 }
 
 .img-button{
@@ -37,14 +53,6 @@
     cursor: pointer;
     transition: 0.7s ease;
     width: 80px;
-}
-
-.post-s h2{
-    color: white;
-    font-size: 50px;
-    border: 6px solid white;
-    padding: 10px 30px;
-    margin-top: 20px;
 }
 
 .col-div{
@@ -96,15 +104,27 @@
 
 .pre-title{
     position: absolute;
-    top: 70px;
+    top: 40%;
     cursor: pointer;
     left: 40%;
+    width: 60px;
+}
+
+.pre-title:hover{
+    transition: 0.7s ease;
+    width: 70px;
 }
 
 .next-title{
     position: absolute;
-    top: 70px;
+    top: 40%;
     cursor: pointer;
+    width: 60px;
+}
+
+.next-title:hover{
+    transition: 0.7s ease;
+    width: 70px;
 }
 
 .next-title-div{
