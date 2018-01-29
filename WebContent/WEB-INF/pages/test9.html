@@ -1,0 +1,426 @@
+<!--<!DOCTYPE html>-->
+<html lang="en" class="no-js">
+<head>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试九</title>
+    <meta name="description" content="Test 1" />
+    <meta name="keywords" content="page transition, css animation, website, effect, css3, jquery" />
+    <meta name="author" content="MikeFeng" />
+    <link rel="shortcut icon" href="../../resource/images/title_icon.png">
+
+    <!--<link rel="stylesheet" type="text/css" href="../../resource/css/component.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="../../resource/css/animations.css" />-->
+
+    <link rel="stylesheet" type="text/css" href="../../resource/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../resource/css/teststyle.css">
+    <script src="../../resource/js/modernizr.custom.js"></script>
+</head>
+<body>
+
+
+<div class="container-fluid content">
+    <div class="row header">
+        <div class="col-2">
+            <h2 class="test-part">测试九：
+                <br>测量
+            </h2>
+        </div>
+
+        <div class="col-10 title-text">
+            <h4 id="title-description" style="display: inline-block">1、哪个温度计的温度表示最热？</h4>
+        </div>
+    </div>
+
+    <div class="row middle">
+        <div class="col-2">
+            <img src="../../resource/images/left_not_ok.png" class="pre-title" id="pre-button">
+        </div>
+
+        <div class="col-8 option">
+            <div class="row">
+                <div class="col col-div">
+                    <div class="post" id="optionA-div">
+						<span class="option-div" id="optionA">
+							<h2 class="option-font-size" id="option-fontA">A</h2>
+						</span>
+                        <img src="../../resource/test9/images/title1_A.png" id="optionA-img" style="width: 120px">
+
+                    </div>
+                </div>
+                <div class="col col-div">
+                    <div class="post" id="optionB-div">
+						<span class="option-div" id="optionB">
+							<h2 class="option-font-size" id="option-fontB">B</h2>
+						</span>
+                        <img src="../../resource/test9/images/title1_B.png" id="optionB-img" style="width: 160px">
+                    </div>
+                </div>
+            </div><!-- row end -->
+
+            <div class="row">
+                <div class="col col-div">
+                    <!--<img src="../../resource/images/test1_temp/test1_C.png" class="title-img" id="optionC">-->
+                    <div class="post" id="optionC-div">
+						<span class="option-div" id="optionC">
+							<h2 class="option-font-size" id="option-fontC">C</h2>
+						</span>
+                        <img src="../../resource/test9/images/title1_C.png" id="optionC-img" style="width: 140px">
+                    </div>
+                </div>
+                <div class="col col-div">
+                    <!--<img src="../../resource/images/test1_temp/test1_D.png" class="title-img" id="optionD">-->
+                    <div class="post" id="optionD-div">
+						<span class="option-div" id="optionD">
+							<h2 class="option-font-size" id="option-fontD">D</h2>
+						</span>
+                        <img src="../../resource/test9/images/title1_D.png" id="optionD-img" style="width: 130px">
+                    </div>
+                </div>
+            </div><!-- row end -->
+        </div><!-- col-8 end -->
+
+        <div class="col-2 next-title-div">
+            <img src="../../resource/images/right_not_ok.png" class="next-title" id="next-button">
+        </div>
+
+    </div>
+
+    <div class="row footer">
+        <div class="col functions-img">
+            &nbsp;
+        </div>
+        <div class="col functions-img">
+            <img src="../../resource/images/list.png" class="img-button">
+        </div>
+        <div class="col functions-img">
+            <img src="../../resource/images/play.png" class="img-button">
+        </div>
+        <div class="col functions-img">
+            <img src="../../resource/images/Chinese.jpg" class="img-button" id="Madarin"><!-- 普通话 -->
+        </div>
+        <div class="col functions-img">
+            <img src="../../resource/images/Canton.jpg" class="img-button" id="Cantonese"><!-- 粤语 -->
+        </div>
+        <div class="col functions-img">
+            <img src="../../resource/images/save.png" class="img-button">
+        </div>
+        <div class="col functions-img">
+            &nbsp;
+        </div>
+    </div>
+
+</div><!-- container-fluid end -->
+
+
+<script>
+    var id_number = localStorage.getItem('id_number');
+    console.log('id_number:'+id_number);
+
+    var titles = [];
+    var title_description = document.getElementById('title-description');
+
+    var num = 9;//用于控制当前是第几部分
+    var cur_test_part = "test"+num;
+    var title = 1;//当前第几题（用于控制不能越界，比如第一题则不能继续点击"上一题"，最后一题则不能点击"下一题"）
+
+    var pre_button = document.getElementById('pre-button');
+    var pre_button_flag = false;//用于控制"上一题"按钮是否能被点击 当title==1时 不能点击
+    var next_button = document.getElementById('next-button');
+    var next_button_flag = false;//用于控制"下一题"按钮是否能被点击 当title==24 或者 考生没有选择选项时 不能点击
+
+
+    var optionA_img = document.getElementById('optionA-img');
+    var optionB_img = document.getElementById('optionB-img');
+    var optionC_img = document.getElementById('optionC-img');
+    var optionD_img = document.getElementById('optionD-img');
+
+    var img_change_size = 0;//用于控制图片大小
+
+    pre_button.addEventListener('click',function () {
+        if (!pre_button_flag){
+            alert('已经是第一题');
+        }
+        else {
+            title--;
+            if (title==1){//如果是第一题，则将按钮改为灰色
+                pre_button.src = "../../resource/images/left_not_ok.png";
+                pre_button_flag = false;
+            }
+            else {
+                if (img_change_size == 1 || img_change_size == 2 || img_change_size == 3){
+                    optionA_img.style.width = '';
+                    optionB_img.style.width = '';
+                    optionC_img.style.width = '';
+                    optionD_img.style.width = '';
+                    img_change_size = 0;
+                }
+                else if (img_change_size == 4){
+                    optionA_div.style.display = '';
+                    optionB_div.style.display = '';
+                    optionC_div.style.display = '';
+                    optionD_div.style.display = '';
+
+                    optionA_img.style.marginTop = '';
+                    optionB_img.style.marginTop = '';
+                    optionC_img.style.marginTop = '';
+                    optionD_img.style.marginTop = '';
+
+                    img_change_size = 0;
+                }
+
+                if (title == 1 || title == 2){
+                    optionA_img.style.width = '120px';
+                    optionB_img.style.width = '160px';
+                    optionD_img.style.width = '160px';
+                    optionC_img.style.width = '140px';
+                    img_change_size = 1;
+                }
+                else if (title == 4){
+                    optionA_img.style.width = '140px';
+                    optionC_img.style.width = '160px';
+                    img_change_size = 2;
+                }
+                else if (title == 5){
+                    optionA_img.style.width = '180px';
+                    optionC_img.style.width = '170px';
+                    img_change_size = 3;
+                }
+                else if (title == 17 || title == 20 || title ==22){
+                    optionA_div.style.display = 'inline-block';
+                    optionB_div.style.display = 'inline-block';
+                    optionC_div.style.display = 'inline-block';
+                    optionD_div.style.display = 'inline-block';
+
+                    optionA_img.style.marginTop = '55px';
+                    optionB_img.style.marginTop = '55px';
+                    optionC_img.style.marginTop = '55px';
+                    optionD_img.style.marginTop = '55px';
+
+                    img_change_size = 4;
+                }
+                else if (title == 24){
+                    optionA_img.style.width = '160px';
+                    optionB_img.style.width = '160px';
+                    optionC_img.style.width = '160px';
+                    optionD_img.style.width = '160px';
+
+                    img_change_size = 1;
+                }
+
+                optionA_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_A.png";
+                optionB_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_B.png";
+                optionC_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_C.png";
+                optionD_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_D.png";
+                cur_selected_element.style.color = 'black';
+                pre_button_flag = true;
+                pre_button.src = "../../resource/images/left_ok.png";
+                next_button_flag = false;
+                next_button.src = "../../resource/images/right_not_ok.png";
+            }
+            title_description.innerHTML = titles[title-1];//改变当前题的题目
+        }
+    });//pre_button.addEventListener  end
+
+    next_button.addEventListener('click',function () {
+        if (!next_button_flag){
+            alert('请选择本题答案，未选择答案不能进入下一题');
+
+        }
+        else {
+            title++;
+            if (title >= 25){//如果已经是最后一题
+                alert('已经是最后一题');
+                title = 24;
+            }
+            else {
+                if (img_change_size == 1){
+                    optionA_img.style.width = '';
+                    optionB_img.style.width = '';
+                    optionC_img.style.width = '';
+                    optionD_img.style.width = '';
+                    img_change_size = 0;
+                }
+                else if (img_change_size == 4){
+                    optionA_div.style.display = '';
+                    optionB_div.style.display = '';
+                    optionC_div.style.display = '';
+                    optionD_div.style.display = '';
+
+                    optionA_img.style.marginTop = '';
+                    optionB_img.style.marginTop = '';
+                    optionC_img.style.marginTop = '';
+                    optionD_img.style.marginTop = '';
+
+                    img_change_size = 0;
+                }
+
+                if (title == 2){
+                    optionA_img.style.width = '120px';
+                    optionB_img.style.width = '160px';
+                    optionD_img.style.width = '180px';
+                    img_change_size = 1;
+                }
+                else if (title == 4){
+                    optionA_img.style.width = '140px';
+                    optionC_img.style.width = '160px';
+                    img_change_size = 1;
+                }
+                else if (title == 5){
+                    optionA_img.style.width = '180px';
+                    optionC_img.style.width = '170px';
+                    img_change_size = 1;
+                }
+                else if (title == 17 || title == 20 || title ==22){
+                    optionA_div.style.display = 'inline-block';
+                    optionB_div.style.display = 'inline-block';
+                    optionC_div.style.display = 'inline-block';
+                    optionD_div.style.display = 'inline-block';
+
+                    optionA_img.style.marginTop = '55px';
+                    optionB_img.style.marginTop = '55px';
+                    optionC_img.style.marginTop = '55px';
+                    optionD_img.style.marginTop = '55px';
+
+                    img_change_size = 4;
+                }
+                else if (title == 24){
+                    optionA_img.style.width = '160px';
+                    optionB_img.style.width = '160px';
+                    optionC_img.style.width = '160px';
+                    optionD_img.style.width = '160px';
+
+                    img_change_size = 1;
+                }
+
+                optionA_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_A.png";
+                optionB_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_B.png";
+                optionC_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_C.png";
+                optionD_img.src = "../../resource/"+cur_test_part+"/images/title"+title+"_D.png";
+                cur_selected_element.style.color = 'black';
+                //改变按钮状态
+                next_button_flag = false;
+                pre_button_flag = true;
+                pre_button.src = "../../resource/images/left_ok.png";
+                next_button_flag = false;
+                next_button.src = "../../resource/images/right_not_ok.png";
+
+                title_description.innerHTML = titles[title-1];//改变当前题的题目
+            }
+
+        }
+
+    });//next_button.addEventListener  end
+
+    var auto_play = true;//*******************待补充*****************************
+    var madarin = document.getElementById('Madarin');//页面下方“普通话”图标
+    var cantonese = document.getElementById('Cantonese');//页面下方“粤语”图标
+    var mandarin_audio;
+    var cantonese_audio;
+
+    madarin.addEventListener('click',function () {
+        mandarin_audio = new Audio('../../resource/test9/Mandarin/'+title+'.mp3');
+        mandarin_audio.play();
+    });
+
+    cantonese.addEventListener('click',function () {
+        cantonese_audio = new Audio('../../resource/test9/Cantonese/'+title+'.mp3');
+        cantonese_audio.play();
+    });
+
+
+    var optionA_div = document.getElementById('optionA-div');
+    var optionB_div = document.getElementById('optionB-div');
+    var optionC_div = document.getElementById('optionC-div');
+    var optionD_div = document.getElementById('optionD-div');
+
+    var optionA = document.getElementById('option-fontA');
+    var optionB = document.getElementById('option-fontB');
+    var optionC = document.getElementById('option-fontC');
+    var optionD = document.getElementById('option-fontD');
+
+    var pre_selected_element = null;
+    var cur_selected_element = null;
+
+    optionA_div.addEventListener('click',function () {
+        if(cur_selected_element == null){
+            cur_selected_element = optionA;
+        }
+        else {
+            pre_selected_element = cur_selected_element;
+            pre_selected_element.style.color = 'black';
+            cur_selected_element = optionA;
+        }
+        next_button_flag = true;
+        next_button.src = "../../resource/images/right_ok.png";
+        cur_selected_element.style.color = 'red';
+    });
+
+    optionB_div.addEventListener('click',function () {
+        if(cur_selected_element == null){
+            cur_selected_element = optionB;
+        }
+        else {
+            pre_selected_element = cur_selected_element;
+            pre_selected_element.style.color = 'black';
+            cur_selected_element = optionB;
+        }
+        next_button_flag = true;
+        next_button.src = "../../resource/images/right_ok.png";
+        cur_selected_element.style.color = 'red';
+    });
+
+    optionC_div.addEventListener('click',function () {
+        if(cur_selected_element == null){
+            cur_selected_element = optionC;
+        }
+        else {
+            pre_selected_element = cur_selected_element;
+            pre_selected_element.style.color = 'black';
+            cur_selected_element = optionC;
+        }
+        next_button_flag = true;
+        next_button.src = "../../resource/images/right_ok.png";
+        cur_selected_element.style.color = 'red';
+    });
+
+    optionD_div.addEventListener('click',function () {
+        if(cur_selected_element == null){
+            cur_selected_element = optionD;
+        }
+        else {
+            pre_selected_element = cur_selected_element;
+            pre_selected_element.style.color = 'black';
+            cur_selected_element = optionD;
+        }
+        next_button_flag = true;
+        next_button.src = "../../resource/images/right_ok.png";
+        cur_selected_element.style.color = 'red';
+    });
+
+    function readTextFile(file) {
+        var title_text = new XMLHttpRequest();
+        title_text.open("GET", file, true);
+        title_text.onreadystatechange = function () {
+            if(title_text.readyState === 4) {
+                if(title_text.status === 200 || title_text.status == 0) {
+                    var allText = title_text.responseText;
+                    titles = allText.split('\n');
+                    title_description.innerHTML = titles[title-1];//第一题的题目在得到txt文件内容时就渲染上去
+                }
+            }
+        };
+        title_text.send(null);
+    }
+    readTextFile('../../resource/title/text9.txt');
+
+</script>
+
+</body>
+</html>
+
+
+
+
