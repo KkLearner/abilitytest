@@ -1,0 +1,77 @@
+.gallery {
+    /*width: 650px;*/
+    width: 750px;
+    margin: 60px auto;
+}
+
+.gallery:hover > li { /************************ 当鼠标置于其上时，所有图片的不透明度都为0.6 *****************************/
+    opacity: 0.6;
+}
+
+.gallery li {
+    float: left;
+    margin: 0 25px 25px 0;
+    transition: all .5s ease;
+    overflow: hidden;
+}
+
+.gallery li img {
+    transition: all .5s ease;/* transition:过渡,转换  用于控制在不同CSS效果切换时的一些表现  */
+}
+
+.gallery li img:hover {
+    transform: scale(1.1, 1.1);/*2D转换  scale n.规模，比例 */
+    opacity: 1;/*********** 将鼠标选中的图片的不透明度改为1，即这图片是清晰的，但是由于.gallery:hover > li 的效果，所以其他图片都是变模糊的 ********/
+    cursor: pointer;
+}
+
+.gallery li:nth-child(3n) {
+    margin-right: 0;
+}
+
+
+
+.post{
+    position: relative;
+    width: 230px;
+    display: inline-block;
+    margin: 0 15px;
+    transition:all .5s ease;
+}
+.post img{
+    display: block;
+    width: 230px;
+}
+.post-s{
+    width: 230px;
+    height: 130px;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.post-s h3{
+    color: white;
+    /*border: 6px solid lightgrey;*/
+    padding: 10px 30px;
+}
+
+
+.row1{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.row2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+.row3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
