@@ -95,19 +95,19 @@
             &nbsp;
         </div>
         <div class="col functions-img">
-            <img src="../../resource/images/list.png" class="img-button">
+            <img src="../../resource/images/list.png" class="img-button" title="返回测试列表" id="test-list"><!-- 测试列表 -->
         </div>
         <div class="col functions-img">
             <img src="../../resource/images/play.png" class="img-button">
         </div>
         <div class="col functions-img">
-            <img src="../../resource/images/Chinese.jpg" class="img-button" id="Madarin"><!-- 普通话 -->
+            <img src="../../resource/images/Chinese.jpg" class="img-button" id="Madarin" title="使用普通话播放题目"><!-- 普通话 -->
         </div>
         <div class="col functions-img">
-            <img src="../../resource/images/Canton.jpg" class="img-button" id="Cantonese"><!-- 粤语 -->
+            <img src="../../resource/images/Canton.jpg" class="img-button" id="Cantonese" title="使用粤语播放题目"><!-- 粤语 -->
         </div>
         <div class="col functions-img">
-            <img src="../../resource/images/save.png" class="img-button">
+            <img src="../../resource/images/save.png" class="img-button" title="保存此部分测试结果"><!-- 保存 -->
         </div>
         <div class="col functions-img">
             &nbsp;
@@ -268,6 +268,7 @@
     var auto_play = true;//*******************待补充*****************************
     var madarin = document.getElementById('Madarin');//页面下方“普通话”图标
     var cantonese = document.getElementById('Cantonese');//页面下方“粤语”图标
+    var test_list = document.getElementById('test-list');//页面下方“测试列表”图标
     var mandarin_audio;
     var cantonese_audio;
 
@@ -279,6 +280,10 @@
     cantonese.addEventListener('click',function () {
         cantonese_audio = new Audio('../../resource/test5/Cantonese/'+title+'.mp3');
         cantonese_audio.play();
+    });
+
+    test_list.addEventListener('click',function () {
+        window.location.href = 'list.html';
     });
 
 
