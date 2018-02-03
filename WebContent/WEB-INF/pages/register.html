@@ -83,6 +83,7 @@
                 if(register_return_info['status'] == 0){ //从未注册
                     console.log('从未注册');
                     localStorage.setItem('id_number',input_id_number);
+//                    localStorage.setItem('id',register_return_info['results'][0]['personid']);
                     window.location.href = "/AbilityTest/test1";
                 }
 
@@ -90,6 +91,7 @@
                     console.log('曾经注册但从未提交');
                     var choose1 = confirm('您是否曾经在本网站注册？');
                     if (choose1 == true){
+//                        localStorage.setItem('id',register_return_info['results'][0]['personid']);
                         window.location.href = "/AbilityTest/test1";
                     }
                     else {//考生否认曾经注册
@@ -106,6 +108,7 @@
                             //*******************************************************
                         }
                         else {//开始新一次的作答
+//                            localStorage.setItem('id',register_return_info['results'][0]['personid']);
                             window.location.href = "/AbilityTest/test1";
                         }
                     }
