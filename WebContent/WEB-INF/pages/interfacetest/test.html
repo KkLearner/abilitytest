@@ -130,6 +130,10 @@
             <td><input type="text" name="account"  value=""/></td>
         </tr>
         <tr>
+        	<td width="30%">name(姓名 必填)</td>
+            <td><input type="text" name="name"  value=""/></td>
+        </tr>
+        <tr>
         	<td width="30%">password(密码 必填)</td>
             <td><input type="password" name="password"  value=""/></td>
         </tr>  
@@ -174,6 +178,60 @@
         <tr>
         	<td width="30%">testid(测试id 必填)</td>
             <td><input type="text" name="testid"  value="1"/></td>
+        </tr>
+        <tr>
+        	<td colspan="2" align="left"><input type="submit" value="go"/> </td>
+        <tr>
+    </table>
+</form>
+
+<form action="/AbilityTest/test/submitAnswer" method="post">
+	<table width="500px" border="1px #FFFFFF soild">
+    	<tr>
+        	<th colspan="2" align="left">保存某一部分的答案</th>
+        <tr>
+        <tr>
+        	<td width="30%">testpool_id(测试id 必填)</td>
+            <td><input type="text" name="testpool_id"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">person_id(测试人员id 必填)</td>
+            <td><input type="text" name="person_id"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">testNumber(测试部分号码  必填)</td>
+            <td><input type="text" name="testNumber"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">answer(答案用,分割开  必填)</td>
+            <td><input type="text" name="answer"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">usetime(该部分答题所用时间,格式hh:mm:ss  必填)</td>
+            <td><input type="text" name="usetime"  value=""/></td>
+        </tr>
+        <tr>
+        	<td colspan="2" align="left"><input type="submit" value="go"/> </td>
+        <tr>
+    </table>
+</form>
+
+<form action="/AbilityTest/test/addOrUpdateTest" method="post">
+	<table width="500px" border="1px #FFFFFF soild">
+    	<tr>
+        	<th colspan="2" align="left">新增或更新测试情况</th>
+        <tr>
+        <tr>
+        	<td width="30%">testpool_id(测试id 选填)</td>
+            <td><input type="text" name="testpool_id"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">test(测试答题情况，每一部分有完整答题：1，无答题：0，部分答题：2。以'',''分割开，共9部分 必填)</td>
+            <td><input type="text" name="test"  value=""/></td>
+        </tr>
+        <tr>
+        	<td width="30%">person_id(测试人员id  必填)</td>
+            <td><input type="text" name=person_id  value=""/></td>
         </tr>
         <tr>
         	<td colspan="2" align="left"><input type="submit" value="go"/> </td>

@@ -105,7 +105,7 @@
 <ul>
     <li>url：/AbilityTest/user/loadLastResult</li>
     <li>type：get</li>
-    <li>description：登录系统接口</li>
+    <li>description：加载最后一次测试结果</li>
 </ul>
 <table>
     <tr>
@@ -130,6 +130,9 @@
     </tr>
     <tr>
         <td>test</td><td>String</td><td>测试答题情况，每一部分有答题：1/无答题：0。以'',''分割开</td><td>‘1,0,0,1,0,1,1,0,1’</td>
+    <tr>
+        <td>testpool_id</td><td>int</td><td>测试id</td><td>1</td>
+    </tr>
     </tr>
 </table>
 
@@ -242,6 +245,9 @@
         <td>account</td><td>String</td><td>账号</td><td>是</td><td>“kk”</td>
     </tr>
     <tr>
+        <td>name</td><td>String</td><td>姓名</td><td>是</td><td>“kkgg”</td>
+    </tr>
+    <tr>
         <td>password</td><td>String</td><td>密码</td><td>是</td><td>“123456”</td>
     </tr>
     <tr>
@@ -345,6 +351,85 @@
     </tr>
     <tr>
         <td>finishtime</td><td>datetime</td><td>该部分完成时间</td><td>2018-01-21 10:46:25</td>
+    </tr>
+</table>
+
+------------------------------------------------------------------
+<ul>
+    <li>url：/AbilityTest/test/submitAnswer</li>
+    <li>type：post</li>
+    <li>description：保存某一部分的答案</li>
+</ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>testpool_id</td><td>int</td><td>测试id</td><td>是</td><td>1</td>
+    </tr>
+    <tr>
+        <td>person_id</td><td>int</td><td>测试人员id</td><td>是</td><td>1</td>
+    </tr>
+    <tr>
+        <td>testNumber</td><td>int</td><td>测试部分号码</td><td>是</td><td>1</td>
+    </tr>
+     <tr>
+        <td>answer</td><td>int</td><td>答案.用,分割开</td><td>是</td><td>A,A,B,D,B,B,A,D,C,D,A,D,B,C,B,D,A,B,D,B,A,C,B,C</td>
+    </tr>
+     <tr>
+        <td>usetime</td><td>int</td><td>该部分答题所用时间,格式hh:mm:ss</td><td>是</td><td>09:02:04</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>状态码：0/1</td><td>0</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>String</td><td>信息：“success”/"inside error"</td><td>“success”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>0/td>
+    </tr>
+</table>
+
+------------------------------------------------------------------
+<ul>
+    <li>url：/AbilityTest/test/addOrUpdateTest</li>
+    <li>type：post</li>
+    <li>description：新增或更新测试情况</li>
+</ul>
+<table>
+    <tr>
+        <th>传参名</th><th>类型</th><th>意义</th><th>是否必须</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>testpool_id</td><td>int</td><td>测试id。填了表示更新测试情况</td><td>选填</td><td>1</td>
+    </tr>
+    <tr>
+        <td>test</td><td>int</td><td>测试答题情况，每一部分有完整答题：1，无答题：0，部分答题：2。以'',''分割开，共9部分</td><td>是</td><td>1,0,1,0,1,0,1,2,1</td>
+    </tr>
+    <tr>
+        <td>person_id</td><td>int</td><td>测试人员id</td><td>是</td><td>1</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>返回参数名</th><th>类型</th><th>意义</th><th>例子</th>
+    </tr>
+    <tr>
+        <td>status</td><td>int</td><td>状态码：0/1</td><td>0</td>
+    </tr>
+    <tr>
+        <td>msg</td><td>String</td><td>信息：“success”/"inside error"</td><td>“success”</td>
+    </tr>
+    <tr>
+        <td>total</td><td>int</td><td>总条数</td><td>1/td>
+    </tr>
+    <tr>
+        <td>testpool_id</td><td>int</td><td>测试id</td><td>1/td>
     </tr>
 </table>
 

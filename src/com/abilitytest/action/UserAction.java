@@ -98,10 +98,10 @@ public class UserAction {
 	@RequestMapping("/loadLastResult")
 	@ResponseBody
 	public Map<String, Object> loadLastResult(@RequestParam Map<String, Object>map){
-		String sql = "select test from testpool"
+		String sql = "select id as testpool_id,test from testpool"
 				+ " where person_id="+Integer.parseInt((String)map.get("person_id"))
 				+ " and if_del=0"
-				+ " order by modifytime desc";
+				+ " order by modifytime desc limit 1";
 		List<Map<String, Object>> temp= testPoolService.getBySQL(sql);
 		if(temp==null||temp.isEmpty())
 			return ResultReturn.setMap(1, "this person_id has not result!", 0, null);

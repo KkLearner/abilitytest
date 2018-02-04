@@ -1,8 +1,11 @@
 package com.abilitytest.service.impl;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +28,30 @@ public class TestResultServiceImpl extends BaseServiceImpl<TestResult> implement
 				+" ORDER BY a.testNumber asc";
 		return testResultDao.getBySQL(sql);
 	}
+
+	@Override
+	public boolean submitAnswer(Map<String, Object> map) {
+		boolean flag = true;
+		try {
+			List<TestResult> testResults = testResultDao.getByCriterion(Restrictions.eq("testpool_id", Integer.valueOf((String)map.get("testpool_id"))),
+				Restrictions.eq("person_id", Integer.valueOf((String)map.get("person_id"))),
+				Restrictions.eq("testNumber", Integer.valueOf((String)map.get("testNumber"))),
+				Restrictions.eq("if_del", 0));
+			if(testResults != null && !testResults.isEmpty()){
+				TestResult result = testResults.get(0);
+				result.setAnswer((String)map.get("answer"));
+				result.setFinishtime(new Date());
+				result.setUsetime(Time.valueOf((String)map.get("usetime")));
+				testResultDao.update(result);
+			}
+			else {
+				testResultDao.add(map);
+			}
+		} catch (Exception e) {
+			flag = false;
+		}
+		return flag;
+	}
+	
+	
 }

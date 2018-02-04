@@ -10,4 +10,6 @@ import com.abilitytest.entity.TestResult;
 public interface TestResultService extends BaseService<TestResult> {
 
 	public List<Map<String, Object>> getAllResults(Integer testid);
+	
+	public boolean submitAnswer(Map<String, Object>map);
 }

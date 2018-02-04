@@ -1,10 +1,13 @@
 package com.abilitytest.action;
 
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.abilitytest.common.Page;
 import com.abilitytest.common.ResultReturn;
 import com.abilitytest.entity.Test;
+import com.abilitytest.entity.TestPool;
+import com.abilitytest.entity.TestResult;
 import com.abilitytest.service.TestPoolService;
 import com.abilitytest.service.TestResultService;
 import com.abilitytest.service.TestService;
@@ -41,5 +46,26 @@ public class TestAction {
 	public Map<String, Object> getAllResults(@RequestParam(value="testid") Integer testid){
 		List<Map<String, Object>> results = testResultService.getAllResults(testid);
 		return ResultReturn.setMap(0, "success", results.size(), results);
+	}
+	
+	@RequestMapping(value="/submitAnswer",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> submitAnswer(@RequestParam Map<String, Object>map){
+		if(testResultService.submitAnswer(map))
+			return ResultReturn.setMap(0, "success", 0, null);
+		return ResultReturn.setMap(1, "inside error", 0, null);
+	}
+	
+	@RequestMapping(value="/addOrUpdateTest",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> addOrUpdateTest(@RequestParam Map<String, Object>map){
+		Integer id = testPoolService.addOrUpdateTest(map);
+		if(id == null)			
+			return ResultReturn.setMap(1, "inside error", 0, null);
+		List<Map<String, Object>> list = new ArrayList<>();
+		Map<String, Object> rMap = new HashMap<>();
+		rMap.put("testpool_id", id);
+		list.add(rMap);
+		return ResultReturn.setMap(0, "success", 1, list);
 	}
 }

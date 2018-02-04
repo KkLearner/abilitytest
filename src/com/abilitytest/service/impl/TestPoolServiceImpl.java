@@ -1,5 +1,6 @@
 package com.abilitytest.service.impl;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.hibernate.Criteria;
@@ -44,5 +45,29 @@ public class TestPoolServiceImpl extends BaseServiceImpl<TestPool> implements Te
 		if(pageSize!=null&&!((String)pageSize).trim().equals("")&&Integer.parseInt((String)pageSize)>0)
 			pagesize = Integer.parseInt((String)pageSize);
 		return testPoolDao.getTestList(builder.toString(), pagenum,pagesize);
+	}
+
+	@Override
+	public Integer addOrUpdateTest(Map<String, Object> map) {
+		Integer id = null;
+		try {
+			if(map.containsKey("testpool_id")&&!((String)map.get("testpool_id")).equals("")){
+				TestPool pool = testPoolDao.getByIdWithoutDel(Integer.valueOf((String)map.get("testpool_id")));
+				if(pool != null){
+					pool.setTest((String)map.get("test"));
+					pool.setModifytime(new Date());
+					testPoolDao.update(pool);
+					return pool.getId();
+				}				
+			}
+			Date date = new Date();
+			TestPool testPool = new TestPool(Integer.valueOf((String)map.get("person_id"))
+					, (String)map.get("test"), 0, date, date);
+			testPoolDao.add(testPool);
+			id = testPool.getId();
+		} catch (Exception e) {
+			id = null;
+		}		
+		return id;
 	}
 }
