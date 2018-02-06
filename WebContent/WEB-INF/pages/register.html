@@ -83,7 +83,7 @@
                 if(register_return_info['status'] == 0){ //从未注册
                     console.log('从未注册');
                     localStorage.setItem('id_number',input_id_number);
-//                    localStorage.setItem('id',register_return_info['results'][0]['personid']);
+                    localStorage.setItem('personid',register_return_info['results'][0]['personid']);//测试人员在数据库中的id，不同于测试人员自己的残疾人id
                     window.location.href = "/AbilityTest/test1";
                 }
 
@@ -91,7 +91,7 @@
                     console.log('曾经注册但从未提交');
                     var choose1 = confirm('您是否曾经在本网站注册？');
                     if (choose1 == true){
-//                        localStorage.setItem('id',register_return_info['results'][0]['personid']);
+                        localStorage.setItem('personid',register_return_info['results'][0]['personid']);
                         window.location.href = "/AbilityTest/test1";
                     }
                     else {//考生否认曾经注册
@@ -120,6 +120,16 @@
             }//回调处理end(status==200)
         });//query end
     }
+    
+    function SetTestSituation() {
+        var set;
+        for (var mm=1;mm<=9;mm++){
+            set = '';
+            set = 'Part'+mm;
+            localStorage.setItem(set,0);
+        }
+    }
+    SetTestSituation();
 
 </script>
 </body>
