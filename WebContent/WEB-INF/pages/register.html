@@ -82,7 +82,7 @@
                 console.log(register_return_info);
                 if(register_return_info['status'] == 0){ //从未注册
                     console.log('从未注册');
-                    localStorage.setItem('id_number',input_id_number);
+                    //localStorage.setItem('id_number',input_id_number);
                     localStorage.setItem('personid',register_return_info['results'][0]['personid']);//测试人员在数据库中的id，不同于测试人员自己的残疾人id
                     window.location.href = "/AbilityTest/test1";
                 }
@@ -108,7 +108,7 @@
                             //*******************************************************
                         }
                         else {//开始新一次的作答
-//                            localStorage.setItem('id',register_return_info['results'][0]['personid']);
+                            localStorage.setItem('personid',register_return_info['results'][0]['personid']);
                             window.location.href = "/AbilityTest/test1";
                         }
                     }
