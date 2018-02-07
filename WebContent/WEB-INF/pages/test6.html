@@ -400,16 +400,6 @@
 
     });//next_button.addEventListener  end
 
-    var answers_array = [];//考生做此部分测试的答案，在页面中通过数组保存，在发送到服务端的时候修改为string
-    var answers = '';//真正发送到服务端的数据
-    var if_save = false;//用于判断是否保存
-    for(var rr=0;rr<24;rr++){//初始化answers，由于数组下标是从0开始的，所以所有的 下标=题号-1
-        answers_array.push({
-            'answer':null
-        });
-    }
-    console.log(answers_array);
-
     var auto_play = true;//*******************待补充*****************************
     var madarin = document.getElementById('Madarin');//页面下方“普通话”图标
     var cantonese = document.getElementById('Cantonese');//页面下方“粤语”图标
@@ -445,22 +435,131 @@
 
     });
 
+
+    var answers_array = [];//考生做此部分测试的答案，在页面中通过数组保存，在发送到服务端的时候修改为string
+    var answers = '';//真正发送到服务端的数据
+    var if_save = false;//用于判断是否保存
+    for(var rr=0;rr<24;rr++){//初始化answers，由于数组下标是从0开始的，所以所有的 下标=题号-1
+        answers_array.push({
+            'answer':null
+        });
+    }
+    console.log(answers_array);
     save.addEventListener('click',function () {
-        answers = 'answer=';
+        answers = 'testpool_id=' + localStorage.getItem('testpool_id');//在register.html（注册界面），AJAX返回的数据，考生在数据库中的id
+        answers += '&person_id=' + localStorage.getItem('personid');//在register.html（注册界面），考生的残疾人证号
+        answers += '&testNumber=6';
+        answers += '&answer=';
         var t = 0;
-        for (t;t<=23;t++){
-            if (answers_array[t]['answer']!=null){
-                answers += answers_array[t]['answer']+','
+        var title_finish_count = 0;//用于统计考生已经做了的题目数量，用于向/AbilityTest/test/addOrUpdateTest（新增或更新测试情况）
+        for (t; t <= 23; t++) {
+            if (answers_array[t]['answer'] != null) {
+                answers += answers_array[t]['answer'] + ',';
+                title_finish_count++;
             }
             else {
-                answers += ','
+                answers += ',';
             }
         }//for end
-        answers += "&PartNumber=6";
-        answers += "&id_number="+localStorage.getItem('id_number');
-        console.log(answers);
+
+        var d = new Date();
+        var Hour_Min_Second = "";
+        if (d.getHours() < 10) {
+            Hour_Min_Second += '0' + d.getHours() + ":";
+        }
+        else {
+            Hour_Min_Second += d.getHours() + ":";
+        }
+        if (d.getMinutes() < 10) {
+            Hour_Min_Second += '0' + d.getMinutes();
+        }
+        else {
+            Hour_Min_Second += d.getMinutes();
+        }
+        if (d.getSeconds() < 10) {
+            Hour_Min_Second += ":0" + d.getSeconds();
+        }
+        else {
+            Hour_Min_Second += ":" + d.getSeconds();
+        }
+        answers += '&usetime=' + Hour_Min_Second;//例子：testpool_id=49&person_id=64&testNumber=1&answer=D,D,D,D,,,,,,,,,,,,,,,,,,,,,&usetime=18:02:31
         if_save = true;
-    });
+        SubmitAnswer();
+
+        //由于在注册界面将所有部分都置为0，因此如果一题都没做，则不需要处理
+        if (title_finish_count >= 1) {
+            if (title_finish_count == 24) {
+                localStorage.setItem('Part6', 1);
+                UpdateTest();//使用UpdateTest()更新数据表testpool中该part是0还是1还是2
+            }
+            else {
+                localStorage.setItem('Part6', 2);
+                UpdateTest();
+            }
+        }
+    },false);
+
+    //AJAX函数
+    function query(url,callbackfunction,data) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
+        xmlhttp.open("POST", encodeURI(url), true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xmlhttp.responseType = 'json';
+        xmlhttp.send(data);
+    }
+
+    //按下“保存”按钮，被监听器调用，作用是保存某部分的答案
+    function SubmitAnswer() {
+        console.log('/AbilityTest/test/submitAnswer发送的数据：' + answers);
+        query("/AbilityTest/test/submitAnswer",function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var submit_answer_return_info = xmlhttp.response;
+                console.log('/AbilityTest/test/submitAnswer返回的数据: '+submit_answer_return_info);
+                if (submit_answer_return_info['msg']=='success'){
+                    alert('答案保存成功');
+                }
+                else {
+                    alert('答案保存失败，请再次尝试');
+                }
+            }//回调处理end(status==200)
+        },answers);//query end
+    }
+
+    //保存某部分测试结果时调用，向服务端更新当前部分的完成情况（做了部分；全部完成）
+    //在测试二中，没必要在加载页面的同时自动运行UpdateTest()，只需要在"保存"时运行即可
+    function UpdateTest() {
+        update_test = 'testpool_id='+localStorage.getItem('testpool_id');
+        update_test += '&test=';
+        var get;
+        //设置所有Part的状态
+        for (var zz=1;zz<=9;zz++){
+            get = '';
+            get = 'Part'+zz;
+            update_test += localStorage.getItem(get);
+            if (zz!=9){
+                update_test += ',';
+            }
+        }
+        update_test += ( '&person_id=' + localStorage.getItem('personid') );
+        console.log('UpdateTest函数-->发送给/AbilityTest/test/addOrUpdateTest:' + update_test);
+
+        query("/AbilityTest/test/addOrUpdateTest",function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var add_or_update_return_info = xmlhttp.response;
+                console.log('下面是UpdateTest接口返回的数据：');
+                console.log(add_or_update_return_info);
+                if (add_or_update_return_info['msg']=='success'){
+                    console.log('UpdateTest函数-->新增或更新测试情况成功');
+                    localStorage.setItem( 'testpool_id' , add_or_update_return_info['results'][0]['testpool_id'] );
+                }
+                else {
+                    console.log('新增或更新测试情况失败');
+                }
+            }//回调处理end(status==200)
+        },update_test);//query end
+
+    }
 
 
     var optionA_div = document.getElementById('optionA-div');

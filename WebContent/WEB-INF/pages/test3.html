@@ -309,7 +309,6 @@
         xmlhttp.send(data);
     }
 
-    //    var count_return_time = 0;//统计此接口返回了多少次（好像不止一次，是三次？？）
     //按下“保存”按钮，被监听器调用，作用是保存某部分的答案
     function SubmitAnswer() {
         console.log('/AbilityTest/test/submitAnswer发送的数据：' + answers);
@@ -327,7 +326,7 @@
         },answers);//query end
     }
 
-    //1、进入新的测试  2、完成某部分测试  3、保存某部分测试
+    //保存某部分测试结果时调用，向服务端更新当前部分的完成情况（做了部分；全部完成）
     //在测试二中，没必要在加载页面的同时自动运行UpdateTest()，只需要在"保存"时运行即可
     function UpdateTest() {
         update_test = 'testpool_id='+localStorage.getItem('testpool_id');
