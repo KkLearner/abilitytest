@@ -66,13 +66,13 @@
     });
 
 
-    function query(url,callbackfunction) {
+    function query(url,callbackfunction,data) {
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
         xmlhttp.open("POST", encodeURI(url), true);
         xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xmlhttp.responseType = 'json';
-        xmlhttp.send(register_info_data);
+        xmlhttp.send(data);
     }
 
     function Register() {
@@ -82,9 +82,10 @@
                 console.log(register_return_info);
                 if(register_return_info['status'] == 0){ //从未注册
                     console.log('从未注册');
-                    //localStorage.setItem('id_number',input_id_number);
+                    localStorage.setItem('id_number',input_id_number);
                     localStorage.setItem('personid',register_return_info['results'][0]['personid']);//测试人员在数据库中的id，不同于测试人员自己的残疾人id
-                    window.location.href = "/AbilityTest/test1";
+                    AddTest();
+//                    window.location.href = "/AbilityTest/test1";//不在此处跳转，而是应该在AddTest中，在成功地增加一条新的数据库记录后才跳转
                 }
 
                 else if (register_return_info['status'] == 1){ //曾经注册但从未提交
@@ -92,7 +93,8 @@
                     var choose1 = confirm('您是否曾经在本网站注册？');
                     if (choose1 == true){
                         localStorage.setItem('personid',register_return_info['results'][0]['personid']);
-                        window.location.href = "/AbilityTest/test1";
+                        AddTest();
+//                        window.location.href = "/AbilityTest/test1";
                     }
                     else {//考生否认曾经注册
                         alert('您的情况较特殊，请联系工作人员处理');//****************后续可能需要添加更多处理，待补充***************************
@@ -105,11 +107,12 @@
                     if (choose2 == true) {
                         var choose3 = confirm('您是否继续上次的作答？');
                         if (choose3 == true) {//继续上次作答
-                            //*******************************************************
+                            //*************************待处理的情况******************************
                         }
                         else {//开始新一次的作答
-                            localStorage.setItem('personid',register_return_info['results'][0]['personid']);
-                            window.location.href = "/AbilityTest/test1";
+//                            localStorage.setItem('id',register_return_info['results'][0]['personid']);
+                            AddTest();
+//                            window.location.href = "/AbilityTest/test1";
                         }
                     }
                     else {//考生否认曾经注册并提交
@@ -118,9 +121,45 @@
                 }
 
             }//回调处理end(status==200)
-        });//query end
+        },register_info_data);//query end
     }
-    
+
+    var add_test = '';
+    function AddTest() {
+        add_test = 'test=';
+        var get;
+        //输出所有Part的状态来看看
+        for (var zz=1;zz<=9;zz++){
+            get = '';
+            get = 'Part'+zz;
+            add_test += localStorage.getItem(get);
+            if (zz!=9){
+                add_test += ',';
+            }
+//			console.log( 'Part'+zz+': '+localStorage.getItem(get) );
+        }
+        add_test += ( '&person_id='+localStorage.getItem('personid') );
+        console.log('AddOrUpdateTest函数-->发送给/AbilityTest/test/addOrUpdateTest: ' + add_test);
+
+        query("/AbilityTest/test/addOrUpdateTest",function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                var add_or_update_return_info = xmlhttp.response;
+                console.log('下面是AddOrUpdateTest接口返回的数据：');
+                console.log(add_or_update_return_info);
+                if (add_or_update_return_info['msg']=='success'){
+                    console.log('AddOrUpdateTest函数-->新增或更新测试情况成功');
+                    localStorage.setItem( 'testpool_id' , add_or_update_return_info['results'][0]['testpool_id'] );
+                    window.location.href = '/AbilityTest/test1';
+                }
+                else {
+                    console.log('新增或更新测试情况失败');
+                    alert('抱歉，新用户添加失败，请联系工作人员');
+                }
+            }//回调处理end(status==200)
+        },add_test);//query end
+    }
+
+    //设置Par1~9为0
     function SetTestSituation() {
         var set;
         for (var mm=1;mm<=9;mm++){

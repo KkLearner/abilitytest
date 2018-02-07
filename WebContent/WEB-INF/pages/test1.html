@@ -122,8 +122,8 @@
 
 
 <script>
-	//var id_number = localStorage.getItem('id_number');
-	//console.log('id_number:'+id_number);
+	var id_number = localStorage.getItem('id_number');
+	console.log('id_number:'+id_number);
 
     var titles = [];
     var title_description = document.getElementById('title-description');
@@ -278,8 +278,8 @@
     var count_save = 0;//用于判断点击“保存”按钮，触发器被触发了几次
 	save.addEventListener('click', function (event) {
 	    count_save++;
-        console.log('count_save:'+count_save);//确实是只被调用了一次啊~~
-//        event.stopPropagation();//停止冒泡
+        console.log('count_save:'+count_save);
+
 		event.preventDefault();
 		answers = 'testpool_id=' + localStorage.getItem('testpool_id');//在register.html（注册界面），AJAX返回的数据，考生在数据库中的id
 		answers += '&person_id=' + localStorage.getItem('personid');//在register.html（注册界面），考生的残疾人证号
@@ -326,11 +326,11 @@
 		if (title_finish_count >= 1) {
 			if (title_finish_count == 24) {
 				localStorage.setItem('Part1', 1);
-				AddOrUpdateTest();
+				UpdateTest();
 			}
 			else {
 				localStorage.setItem('Part1', 2);
-				AddOrUpdateTest();
+				UpdateTest();
 			}
 		}
 
@@ -338,10 +338,10 @@
 
 	//AJAX函数
 	function query(url,callbackfunction,data) {
-	    if (url == '/AbilityTest/test/submitAnswer'){
-	        count_query_time++;
-            console.log('发送到/AbilityTest/test/submitAnswer的次数：'+count_query_time);
-        }
+//	    if (url == '/AbilityTest/test/submitAnswer'){
+//	        count_query_time++;
+//            console.log('发送到/AbilityTest/test/submitAnswer的次数：'+count_query_time);
+//        }
 		xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
 		xmlhttp.open("POST", encodeURI(url), true);
@@ -351,7 +351,7 @@
 	}
 
 	var count_return_time = 0;//统计此接口返回了多少次（好像不止一次，是三次？？）
-    var count_query_time = 0;//统计发送了多少次AJAX请求
+//    var count_query_time = 0;//统计发送了多少次AJAX请求
 	//按下“保存”按钮，被监听器调用，作用是保存某部分的答案
 	function SubmitAnswer() {
 		query("/AbilityTest/test/submitAnswer",function() {
@@ -360,7 +360,7 @@
 				var submit_answer_return_info = xmlhttp.response;
 				console.log('/AbilityTest/test/submitAnswer返回的数据: '+submit_answer_return_info);
 				if (submit_answer_return_info['msg']=='success'){
-					alert('答案保存成功'+count_return_time);
+					alert('答案保存成功');
 				}
 				else {
 					alert('答案保存失败，请再次尝试');
@@ -370,8 +370,9 @@
 	}
 
 	//1、进入新的测试  2、完成某部分测试  3、保存某部分测试
-	function AddOrUpdateTest() {
-		add_or_update_test = 'test=';
+	function UpdateTest() {
+		add_or_update_test = 'testpool_id='+localStorage.getItem('testpool_id');
+		add_or_update_test += '&test=';
 		var get;
 		//输出所有Part的状态来看看
 		for (var zz=1;zz<=9;zz++){
@@ -384,15 +385,15 @@
 //			console.log( 'Part'+zz+': '+localStorage.getItem(get) );
 		}
 		add_or_update_test += ( '&person_id='+localStorage.getItem('personid') );
-		console.log('AddOrUpdateTest函数-->发送给/AbilityTest/test/addOrUpdateTest: ' + add_or_update_test);
+		console.log('UpdateTest函数-->发送给/AbilityTest/test/addOrUpdateTest: ' + add_or_update_test);
 
 		query("/AbilityTest/test/addOrUpdateTest",function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 				var add_or_update_return_info = xmlhttp.response;
-				console.log('下面是AddOrUpdateTest接口返回的数据：');
+				console.log('下面是UpdateTest接口返回的数据：');
 				console.log(add_or_update_return_info);
 				if (add_or_update_return_info['msg']=='success'){
-					console.log('AddOrUpdateTest函数-->新增或更新测试情况成功');
+					console.log('UpdateTest函数-->新增或更新测试情况成功');
 					localStorage.setItem( 'testpool_id' , add_or_update_return_info['results'][0]['testpool_id'] );
 				}
 				else {
@@ -402,7 +403,6 @@
 		},add_or_update_test);//query end
 
 	}
-	AddOrUpdateTest();
 
 
 	var optionA_div = document.getElementById('optionA-div');
