@@ -1,0 +1,62 @@
+input[type=checkbox]{
+    display: none;/*这句话的作用是将checkbox默认的勾选框隐藏掉*/
+}
+
+/*未做的部分的勾选框*/
+input[type=checkbox] + label.unchecked:before{
+    content: '\2714';
+    border: 0.1em solid #000;
+    border-radius: 0.2em;
+    display: inline-block;
+    vertical-align: bottom;
+    color: transparent;
+    margin-right: 0.2em;
+    width: 1.4em;
+    height: 1em;
+}
+
+/*全部完成的部分的勾选框*/
+input[type=checkbox]:checked + label:before{
+    border: 0.1em solid #000;
+    border-radius: 0.2em;
+    display: inline-block;
+    vertical-align: bottom;
+    content: url('../../DataTables/images/checked.png');
+    background-color: MediumSeaGreen;
+    color: white;
+    margin-right: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+/*做了部分但未全部完成的勾选框*/
+input[type=checkbox] + label.unfinish:before{
+    border: 0.1em solid #000;
+    border-radius: 0.2em;
+    display: inline-block;
+    vertical-align: bottom;
+    content: url('../../DataTables/images/circle.png');
+    background-color: MediumSeaGreen;
+    color: white;
+    margin-right: 0.2em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+.th-include-button{
+    /*vertical-align: middle !important;*/
+    display: flex;/*设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效*/
+    align-items: center;
+    justify-content: center;
+}
+
+.test-detail-report{
+    background-color: rgb(27,154,247);
+    border: 1px solid #eff0dc;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 5px 10px;
+    border-top: 0;
+    margin-top: 38px;
+}
