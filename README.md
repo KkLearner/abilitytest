@@ -161,7 +161,7 @@
         <td>endTime</td><td>String</td><td>结束时间,格式为yyyy-mm-dd(表示该日的零时零分)</td><td>选填</td><td>“2018-01-20”</td>
     </tr>
     <tr>
-        <td>pageNum</td><td>int</td><td>页号，默认1</td><td>选填</td><td>1</td>
+        <td>pageNum</td><td>int</td><td>页号，默认1,为*表示不分页</td><td>选填</td><td>1</td>
     </tr>
     <tr>
         <td>pageSize</td><td>int</td><td>页面大小，默认10</td><td>选填</td><td>10</td>

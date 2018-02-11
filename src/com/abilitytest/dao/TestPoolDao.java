@@ -5,5 +5,5 @@ import com.abilitytest.entity.TestPool;
 
 public interface TestPoolDao extends BaseDao<TestPool> {
 
-	public Page getTestList(String sql,int pageNum,int pageSize);
+	public Page getTestList(String sql,int pageNum,int pageSize,boolean isPage);
 }
