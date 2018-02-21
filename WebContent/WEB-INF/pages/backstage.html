@@ -13,8 +13,8 @@
 
     <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/css/backstage.css">
     <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/DataTables/css/dataTables.bootstrap4.min.css">
 
+    <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/DataTables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="/AbilityTest/resource/DataTables/css/checkbox.css">
 </head>
 <body>
@@ -159,6 +159,7 @@
         var AbilityTest = "pageNum="+pageNum+"&pageSize="+pageSize;//发送到服务端的数据
         var tr;//新一行
         var th1,th2,th3,th4,th5,th6;//新一列
+        var btn_detail,btn_report;// "测试详情"按钮，"测试报告"按钮
         var results_test;//用于接收各部分测试的情况
         query("/AbilityTest/test/getTestList", function () {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
@@ -168,12 +169,15 @@
                     results_length = testlist['results'].length;
                     for (var i=0;i<results_length;i++){
                         tr = document.createElement('tr');
-                        th1 = document.createElement('th');//序号
-                        th2 = document.createElement('th');//测试对象
-                        th3 = document.createElement('th');//证件号码
-                        th4 = document.createElement('th');//测试时间
-                        th5 = document.createElement('th');//测试内容
-                        th6 = document.createElement('th');//测试详情/测试报告
+                        th1 = document.createElement('th');//th标签 序号
+                        th2 = document.createElement('th');//th标签 测试对象
+                        th3 = document.createElement('th');//th标签 证件号码
+                        th4 = document.createElement('th');//th标签 测试时间
+                        th5 = document.createElement('th');//th标签 测试内容
+                        th6 = document.createElement('th');//th标签 测试详情/测试报告
+
+                        btn_detail = document.createElement('button');//button 测试详情按钮
+                        btn_report = document.createElement('button');//button 测试报告按钮
 
                         th1.innerHTML = testlist['results'][i]['testid'];
                         th2.innerHTML = testlist['results'][i]['name'];
@@ -201,8 +205,22 @@
                         tr.appendChild(th5);
 
 
-                        th6.innerHTML = "<button class='test-detail-report'>测试详情</button> <button class='test-detail-report'>测试报告</button>";
+//                        th6.innerHTML = "<button class='test-detail-report'>测试详情</button> <button class='test-detail-report'>测试报告</button>";
+                        btn_detail.className = 'test-detail-report';
+                        btn_detail.id = testlist['results'][i]['testid'] + "";//这是跳转至"测试详情"页面前需要获取的数据，/AbilityTest/user/getAllResults接口的传参名
+                        btn_detail.innerHTML = '测试详情';
+                        btn_detail.addEventListener('click',function (event) {
+                            console.log(event.srcElement.id);
+                            localStorage.setItem('detail_testid',event.srcElement.id);
+                            window.location.href = '/AbilityTest/reportdetail';
+                        });
+
+                        btn_report.className = 'test-detail-report';
+                        btn_report.innerHTML = '测试报告';
                         th6.className = 'th-include-button';
+                        th6.appendChild(btn_detail);
+                        th6.appendChild(btn_report);
+
                         tr.appendChild(th6);
 
                         tbody.appendChild(tr);
