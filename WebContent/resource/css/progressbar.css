@@ -1,0 +1,28 @@
+.circle {
+    width: 100px;
+    /*margin: 6px 6px 20px;*/
+    margin-left: 3em;
+    margin-top: 5px;
+    display: flex;
+    position: relative;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.circle strong {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+    font-size: 20px;
+}
+
+.title-and-progress-bar{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+}
+
+

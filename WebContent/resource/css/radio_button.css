@@ -1,0 +1,133 @@
+.test-answer{
+    margin-bottom: 10px;
+}
+
+.inline-block{
+    display: inline-block;
+    float: left;
+}
+.test-topic-answer{
+    color: #9cebd5;
+    display: inline-block;
+    font-size: 22px;
+}
+
+.test-title{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.test-part{
+    border-bottom: 1px solid;
+    padding-bottom: 20px;
+}
+
+.numberCircle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    /*padding: 8px;*/
+
+    background: #9cebd5;
+    border: 2px solid #9cebd5;
+    color: white;
+    text-align: center;
+
+    font-size: 22px;
+}
+
+.show-report-buttons{
+    margin-left: 20px;
+}
+
+.show-report{
+    background-color: rgb(27,154,247);
+    border: 1px solid #eff0dc;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 5px 10px;
+    border-top: 0;
+    margin-top: 23px;
+}
+
+.show-report:focus{
+    border: none;
+}
+
+.checkbox{
+    display: inline-flex;
+    font-size: 1.4em;
+}
+
+.div-buttons{
+    border-style: solid none solid none;
+    border-width: 1px;
+    margin-top: 25px;
+    height: 5em;
+}
+
+.select-test-part > div{/* >选择器 */
+    padding: 20px 0;
+}
+
+.select-test-part input[type="checkbox"]{
+    display: none;
+}
+
+.select-test-part .checkbox label{
+    color: #0074d9;
+    padding: 5px 15px 5px 25px;
+    /*display: inline-block;*/
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+    font-size: 1em;
+    border-radius: 3px;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+}
+
+.select-test-part .checkbox label:hover{
+    background: rgba(0,116,217,0.1);
+}
+
+.select-test-part .checkbox label:before{
+    content: "";
+    width: 20px;
+    height: 20px;
+    /*display: inline-block;*/
+    display: inline-flex;
+    /*flex-direction: row;*/
+
+    background: none;
+    border: 3px solid #0774d9;
+    border-radius: 50%;/*利用border画出线条，然后利用border-radius把形状从正方形改为圆形*/
+    position: absolute;/*本来before是让这部分出现在label的content前面（左边）的，但是position:absolute会使得这部分内容和label的内容出现了重叠*/
+    left: 3px;
+    top: 13px;
+}
+
+.select-test-part .checkbox label:before{
+    border-radius: 3px;
+}
+
+.select-test-part input[type="checkbox"]:checked + label{/* +选择器 当label被点击的时候，整体变小，颜色改变，字体变为白色 */
+    padding: 5px 15px;
+    background: #0774d9;
+    border-radius: 5px;
+    color: #fff;/* 白色 */
+    margin-left: 10px;
+    margin-right: 3px;
+}
+
+.select-test-part input[type="checkbox"]:checked + label:before{/* 让原本before的内容消失 */
+    display: none;
+}
+
+
