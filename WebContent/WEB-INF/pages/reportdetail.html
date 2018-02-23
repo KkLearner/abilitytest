@@ -768,7 +768,7 @@
             size: 100,
             startAngle:0,
             fill: {
-                gradient: ["#ff1e41", "#ff5f43"]
+                gradient: color
             }
         }).on('circle-animation-progress', function(event, progress, stepValue) {
             $(this).find('strong').html('测试八<br>'+Math.round(circle_percentage * 100 * progress) + '%');
