@@ -1,3 +1,9 @@
+.not-done{
+    text-align: center;
+    color: #9cebd5;
+    font-size: 1.5rem;
+}
+
 .test-answer{
     margin-bottom: 10px;
 }
