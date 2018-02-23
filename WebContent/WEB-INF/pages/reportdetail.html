@@ -389,6 +389,87 @@
            }
        }
     });
+    
+    var show_all_test_button = document.getElementById('show-all-test');
+    show_all_test_button.addEventListener('click',function () {
+        show_tests = [1,1,1,1,1,1,1,1,1];
+
+        var div_row;
+        var div_test_title;
+        var div_test_answer;
+        var h2_title;
+        var div_not_done;//如果考生没有作答该部分时，使用此div
+
+        for(var hh=0;hh<9;hh++){
+            if (show_tests[hh]==1){//要显示的部分
+                if (situation[hh]['test'+ (hh+1)]==true){//该部分考生有作答
+                    var cur_title = 0;//取值0~23，用于控制从situation[hh]['answers']获取当前题目的作答选项
+                    div_row = document.createElement('div');
+                    div_test_title = document.createElement('div');
+                    h2_title = document.createElement('h2');
+
+                    div_row.className = 'row test-part';
+                    div_test_title.className = 'test-title';
+
+                    h2_title.innerText = inner_texts[hh];
+                    div_test_title.appendChild(h2_title);
+                    div_row.appendChild(div_test_title);
+
+                    //一共四行，每行六个题目的答案；内外两个循环
+                    for(var aa=0;aa<4;aa++){
+                        div_test_answer = document.createElement('div');
+                        div_test_answer.className = 'test-answer col-12';
+                        for(var pp=0;pp<6;pp++){
+                            var div_col2 = document.createElement('div');
+                            div_col2.className = 'col-2 inline-block';
+
+                            var div_number_circle = document.createElement('div');
+                            div_number_circle.className = 'numberCircle';
+                            div_number_circle.innerText = cur_title+1;//题号（1~24）
+
+                            var div_test_topic_answer = document.createElement('div');
+                            div_test_topic_answer.className = 'test-topic-answer';
+                            if (situation[hh]['answers'][cur_title]!=""){
+                                div_test_topic_answer.innerHTML = '——&nbsp;'+ situation[hh]['answers'][cur_title];//作答的选项（A/B/C/D）
+                            }
+                            else {
+                                div_test_topic_answer.innerHTML = "——&nbsp;<img src='/AbilityTest/resource/images/not_reply.png'>"
+                            }
+                            cur_title++;
+
+                            div_col2.appendChild(div_number_circle);
+                            div_col2.appendChild(div_test_topic_answer);
+                            div_test_answer.appendChild(div_col2);
+                        }
+                        div_row.appendChild(div_test_answer);
+                    }
+                    div_container_fluid.appendChild(div_row);
+
+                }
+                else {//该部分考生没有作答
+                    div_row = document.createElement('div');
+                    div_test_title = document.createElement('div');
+                    div_test_answer = document.createElement('div');
+                    h2_title = document.createElement('h2');
+                    div_not_done = document.createElement('div');//如果考生没有作答该部分时，使用此div
+
+
+                    div_row.className = 'row test-part';
+                    div_test_title.className = 'test-title';
+                    div_test_answer.className = 'test-answer col-12';
+                    div_not_done.className = 'col-12 not-done';
+
+                    h2_title.innerHTML = inner_texts[hh];
+                    div_test_title.appendChild(h2_title);
+                    div_not_done.innerHTML = inner_texts[9];
+                    div_test_answer.appendChild(div_not_done);
+                    div_row.appendChild(div_test_title);
+                    div_row.appendChild(div_test_answer);
+                    div_container_fluid.appendChild(div_row);
+                }
+            }
+        }
+    });
 
     var test1_label = document.getElementById('test1_label');
     test1_label.addEventListener('click',function () {
