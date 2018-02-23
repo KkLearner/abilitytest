@@ -21,7 +21,7 @@
     <span>测试详情</span>
 </div>
 
-<div class="container-fluid content">
+<div class="container-fluid content" id="container-fluid">
 
     <div class="row">
         <div class="col-2 title-and-progress-bar">
@@ -86,215 +86,140 @@
         <div class="select-test-part">
             <div class="checkbox">
                 <input type="checkbox" name="checkbox" id="checkbox1">
-                <label for="checkbox1" class="label1">测试1</label>
+                <label for="checkbox1" class="label1" id="test1_label">测试1</label>
 
                 <input type="checkbox" name="checkbox" id="checkbox2">
-                <label for="checkbox2">测试2</label>
+                <label for="checkbox2" id="test2_label">测试2</label>
 
                 <input type="checkbox" name="checkbox" id="checkbox3">
-                <label for="checkbox3">测试3</label>
+                <label for="checkbox3" id="test3_label">测试3</label>
 
                 <input type="checkbox" name="checkbox" id="checkbox4">
-                <label for="checkbox4">测试4</label>
+                <label for="checkbox4" id="test4_label">测试4</label>
 
                 <input type="checkbox" name="checkbox" id="checkbox5">
-                <label for="checkbox5">测试5</label>
+                <label for="checkbox5" id="test5_label">测试5</label>
 
                 <input type="checkbox" name="checkbox" id="checkbox6">
-                <label for="checkbox6">测试6</label>
+                <label for="checkbox6" id="test6_label">测试6</label>
 
                 <input type="checkbox" name="checkbox" id="checkbox7">
-                <label for="checkbox7">测试7</label>
+                <label for="checkbox7" id="test7_label">测试7</label>
 
                 <input type="checkbox" name="checkbox" id="checkbox8">
-                <label for="checkbox8">测试8</label>
+                <label for="checkbox8" id="test8_label">测试8</label>
 
                 <input type="checkbox" name="checkbox" id="checkbox9">
-                <label for="checkbox9">测试9</label>
+                <label for="checkbox9" id="test9_label">测试9</label>
             </div><!-- checkbox end -->
         </div>
 
         <div class="show-report-buttons">
-            <button class='show-report'>显示选中部分</button>
-            <button class='show-report'>显示全部部分</button>
+            <button class='show-report' id="show-selected-test">显示选中部分</button>
+            <button class='show-report' id="show-all-test">显示全部部分</button>
         </div>
     </div><!-- row end -->
 
-    <div class="row test-part">
-        <div class="test-title">
-            <h2>第一部分</h2>
-        </div>
-        <div class="test-answer col-12">
-            <div class="col-2 inline-block">
-                <div class="numberCircle">1</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">2</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">3</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">4</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">5</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">6</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-        </div>
-        <div class="test-answer col-12">
-            <div class="col-2 inline-block">
-                <div class="numberCircle">7</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">8</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">9</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">10</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">11</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">12</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-        </div>
-        <div class="test-answer col-12">
-            <div class="col-2 inline-block">
-                <div class="numberCircle">13</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">14</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">15</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">16</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">17</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">18</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-        </div>
-        <div class="test-answer col-12">
-            <div class="col-2 inline-block">
-                <div class="numberCircle">19</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">20</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">21</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">22</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">23</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">24</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-        </div>
-    </div>
+    <!--<div class="row test-part">-->
+        <!--<div class="test-title">-->
+            <!--<h2>第一部分</h2>-->
+        <!--</div>-->
+        <!--<div class="test-answer col-12">-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">1</div> <div class="test-topic-answer">——&nbsp;A</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">2</div> <div class="test-topic-answer">——&nbsp;B</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">3</div> <div class="test-topic-answer">——&nbsp;D</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">4</div> <div class="test-topic-answer">——&nbsp;A</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">5</div> <div class="test-topic-answer">——&nbsp;B</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">6</div> <div class="test-topic-answer">——&nbsp;D</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="test-answer col-12">-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">7</div> <div class="test-topic-answer">——&nbsp;A</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">8</div> <div class="test-topic-answer">——&nbsp;B</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">9</div> <div class="test-topic-answer">——&nbsp;D</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">10</div> <div class="test-topic-answer">——&nbsp;A</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">11</div> <div class="test-topic-answer">——&nbsp;B</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">12</div> <div class="test-topic-answer">——&nbsp;D</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="test-answer col-12">-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">13</div> <div class="test-topic-answer">——&nbsp;A</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">14</div> <div class="test-topic-answer">——&nbsp;B</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">15</div> <div class="test-topic-answer">——&nbsp;D</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">16</div> <div class="test-topic-answer">——&nbsp;A</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">17</div> <div class="test-topic-answer">——&nbsp;B</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">18</div> <div class="test-topic-answer">——&nbsp;D</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="test-answer col-12">-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">19</div> <div class="test-topic-answer">——&nbsp;A</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">20</div> <div class="test-topic-answer">——&nbsp;B</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">21</div> <div class="test-topic-answer">——&nbsp;D</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">22</div> <div class="test-topic-answer">——&nbsp;A</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">23</div> <div class="test-topic-answer">——&nbsp;B</div>-->
+            <!--</div>-->
+            <!--<div class="col-2 inline-block">-->
+                <!--<div class="numberCircle">24</div> <div class="test-topic-answer">——&nbsp;D</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <div class="row test-part">
-        <div class="test-title">
-            <h2>第二部分</h2>
-        </div>
-        <div class="test-answer col-12">
-            <div class="col-2 inline-block">
-                <div class="numberCircle">1</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">2</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">3</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">4</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">5</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">6</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-        </div>
-        <div class="test-answer col-12">
-            <div class="col-2 inline-block">
-                <div class="numberCircle">7</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">8</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">9</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">10</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">11</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">12</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-        </div>
-        <div class="test-answer col-12">
-            <div class="col-2 inline-block">
-                <div class="numberCircle">13</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">14</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">15</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">16</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">17</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">18</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-        </div>
-        <div class="test-answer col-12">
-            <div class="col-2 inline-block">
-                <div class="numberCircle">19</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">20</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">21</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">22</div> <div class="test-topic-answer">——&nbsp;A</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">23</div> <div class="test-topic-answer">——&nbsp;B</div>
-            </div>
-            <div class="col-2 inline-block">
-                <div class="numberCircle">24</div> <div class="test-topic-answer">——&nbsp;D</div>
-            </div>
-        </div>
-    </div>
+
+    <!--<div class="row test-part">&lt;!&ndash; 样板 &ndash;&gt;-->
+        <!--<div class="test-title">-->
+            <!--<h2>第三部分</h2>-->
+        <!--</div>-->
+        <!--<div class="test-answer col-12">-->
+            <!--<div class="col-12 not-done">-->
+                <!--此部分没有作答-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
 
 </div>
-
 
 <script src="/AbilityTest/resource/js/jquery.min.js"></script>
 <script src="/AbilityTest/resource/js/circle-progress.js"></script>
@@ -302,128 +227,498 @@
     var testid= 'testid=' + localStorage.getItem('detail_testid');
     console.log(testid);
 
-    function query(url,callbackfunction,data) {
+    function query(url,callbackfunction) {
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = callbackfunction; //指定回调函数
-        xmlhttp.open("POST", encodeURI(url), true);
-        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xmlhttp.open("GET", encodeURI(url), true);//使用GET方式不同于POST方式，需要直接在url里面添加参数
         xmlhttp.responseType = 'json';
-        xmlhttp.send(data);
+        xmlhttp.send();
     }
-    
+
+    var situation = [
+        {
+            'test1':false,
+            'done_titles':0,
+            'answers':[]
+        },
+        {
+            'test2':false,
+            'done_titles':0,
+            'answers':[]
+        },
+        {
+            'test3':false,
+            'done_titles':0,
+            'answers':[]
+        },
+        {
+            'test4':false,
+            'done_titles':0,
+            'answers':[]
+        },
+        {
+            'test5':false,
+            'done_titles':0,
+            'answers':[]
+        },
+        {
+            'test6':false,
+            'done_titles':0,
+            'answers':[]
+        },
+        {
+            'test7':false,
+            'done_titles':0,
+            'answers':[]
+        },
+        {
+            'test8':false,
+            'done_titles':0,
+            'answers':[]
+        },
+        {
+            'test9':false,
+            'done_titles':0,
+            'answers':[]
+        }
+    ];//用于记录九个测试部分的做题情况，默认是全部未做
+
+    var test_part_situation;//用于获取服务端返回的数据
     function Circle_Test_One() {
-        query('/AbilityTest/user/getAllResults',function () {
+        query('/AbilityTest/test/getAllResults?' + testid , function () {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                var test_part_situation = xmlhttp.response;
+                test_part_situation = xmlhttp.response;
                 console.log(test_part_situation);
+                var length = test_part_situation['results'].length;
+                for(var i=0;i<length;i++){//遍历所有做过的测试部分，更新situation的情况
+                    var have_done_test = test_part_situation['results'][i]['testNumber'];//该考生做过的测试部分（不一定完成了的）
+                    situation[have_done_test-1]['test'+have_done_test] = true;
+                    var anwers = test_part_situation['results'][i]['answer'].split(",");//用数组存起24条题目的答题情况（可能未答题）
+                    situation[have_done_test-1]['answers'] = anwers;
+                    for(var j=0;j<24;j++){
+                        if ( anwers[j]!= ""){
+                            situation[have_done_test-1]['done_titles']++;
+                        }
+                    }
+//                    console.log(anwers);
+                }
+                console.log(situation);
             }
-        },testid);
+        });
     }
     Circle_Test_One();
-    
-    
-    $('#circle1').circleProgress({
-        value: 0.75,
-        size: 100,
-        startAngle:0,
-        fill: {
-            gradient: [['#0681c4', .5], ['#4ac5f8', .5]]
-        }
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html('测试一<br>'+Math.round(75 * progress) + '%');
+
+    var div_container_fluid = document.getElementById('container-fluid');
+    var show_tests = [0,0,0,0,0,0,0,0,0];//用于控制要显示的部分（显示具体选项）
+    var inner_texts = ['第一部分','第二部分','第三部分','第四部分','第五部分','第六部分','第七部分','第八部分','第九部分','此部分没有作答'];
+    var show_selected_test_button = document.getElementById('show-selected-test');//"显示选中部分"按钮
+    show_selected_test_button.addEventListener('click',function () {
+        var div_row;
+        var div_test_title;
+        var div_test_answer;
+        var h2_title;
+        var div_not_done;//如果考生没有作答该部分时，使用此div
+
+        for(var hh=0;hh<9;hh++){
+           if (show_tests[hh]==1){//要显示的部分
+               if (situation[hh]['test'+ (hh+1)]==true){//该部分考生有作答
+                   var cur_title = 0;//取值0~23，用于控制从situation[hh]['answers']获取当前题目的作答选项
+                   div_row = document.createElement('div');
+                   div_test_title = document.createElement('div');
+                   h2_title = document.createElement('h2');
+
+                   div_row.className = 'row test-part';
+                   div_test_title.className = 'test-title';
+
+                   h2_title.innerText = inner_texts[hh];
+                   div_test_title.appendChild(h2_title);
+                   div_row.appendChild(div_test_title);
+
+                   //一共四行，每行六个题目的答案；内外两个循环
+                   for(var aa=0;aa<4;aa++){
+                       div_test_answer = document.createElement('div');
+                       div_test_answer.className = 'test-answer col-12';
+                       for(var pp=0;pp<6;pp++){
+                           var div_col2 = document.createElement('div');
+                           div_col2.className = 'col-2 inline-block';
+
+                           var div_number_circle = document.createElement('div');
+                           div_number_circle.className = 'numberCircle';
+                           div_number_circle.innerText = cur_title+1;//题号（1~24）
+
+                           var div_test_topic_answer = document.createElement('div');
+                           div_test_topic_answer.className = 'test-topic-answer';
+                           if (situation[hh]['answers'][cur_title]!=""){
+                               div_test_topic_answer.innerHTML = '——&nbsp;'+ situation[hh]['answers'][cur_title];//作答的选项（A/B/C/D）
+                           }
+                           else {
+                               div_test_topic_answer.innerHTML = "——&nbsp;<img src='/AbilityTest/resource/images/not_reply.png'>"
+                           }
+                           cur_title++;
+
+                           div_col2.appendChild(div_number_circle);
+                           div_col2.appendChild(div_test_topic_answer);
+                           div_test_answer.appendChild(div_col2);
+                       }
+                       div_row.appendChild(div_test_answer);
+                   }
+                   div_container_fluid.appendChild(div_row);
+
+               }
+               else {//该部分考生没有作答
+                   div_row = document.createElement('div');
+                   div_test_title = document.createElement('div');
+                   div_test_answer = document.createElement('div');
+                   h2_title = document.createElement('h2');
+                   div_not_done = document.createElement('div');//如果考生没有作答该部分时，使用此div
+
+
+                   div_row.className = 'row test-part';
+                   div_test_title.className = 'test-title';
+                   div_test_answer.className = 'test-answer col-12';
+                   div_not_done.className = 'col-12 not-done';
+
+                   h2_title.innerHTML = inner_texts[hh];
+                   div_test_title.appendChild(h2_title);
+                   div_not_done.innerHTML = inner_texts[9];
+                   div_test_answer.appendChild(div_not_done);
+                   div_row.appendChild(div_test_title);
+                   div_row.appendChild(div_test_answer);
+                   div_container_fluid.appendChild(div_row);
+               }
+           }
+       }
     });
 
-    $('#circle2').circleProgress({
-        value: 1.00,
-        size: 100,
-        startAngle:0,
-        fill: {
-            gradient: ["green", "lightblue"]
+    var test1_label = document.getElementById('test1_label');
+    test1_label.addEventListener('click',function () {
+        if (show_tests[0]==0){
+            show_tests[0] = 1;
         }
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html('测试二<br>'+Math.round(100 * progress) + '%');
+        else {
+            show_tests[0] = 0;
+        }
+    });//点击一下是选中，再点击一下是取消选中
+
+    var test2_label = document.getElementById('test2_label');
+    test2_label.addEventListener('click',function () {
+        if (show_tests[1]==0){
+            show_tests[1] = 1;
+        }
+        else {
+            show_tests[1] = 0;
+        }
     });
 
-    $('#circle3').circleProgress({
-        value: 0.25,
-        size: 100,
-        startAngle:0,
-        fill: {
-            gradient: ["#ff1e41", "#ff5f43"]
+    var test3_label = document.getElementById('test3_label');
+    test3_label.addEventListener('click',function () {
+        if (show_tests[2]==0){
+            show_tests[2] = 1;
         }
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html('测试三<br>'+Math.round(25 * progress) + '%');
+        else {
+            show_tests[2] = 0;
+        }
     });
 
-    $('#circle4').circleProgress({
-        value: 0.5,
-        size: 100,
-        startAngle:0,
-        fill: {
-            gradient: ["#ff1e41", "#ff5f43"]
-        },
-        animation:{
-            duration: 1200,
-            easing: "circleProgressEasing"
+    var test4_label = document.getElementById('test4_label');
+    test4_label.addEventListener('click',function () {
+        if (show_tests[3]==0){
+            show_tests[3] = 1;
         }
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html('测试四<br>'+Math.round(50 * progress) + '%');
+        else {
+            show_tests[3] = 0;
+        }
     });
 
-    $('#circle5').circleProgress({
-        value: 0.25,
-        size: 100,
-        startAngle:0,
-        fill: {
-            gradient: ["#ff1e41", "#ff5f43"]
+    var test5_label = document.getElementById('test5_label');
+    test5_label.addEventListener('click',function () {
+        if (show_tests[4]==0){
+            show_tests[4] = 1;
         }
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html('测试五<br>'+Math.round(25 * progress) + '%');
+        else {
+            show_tests[4] = 0;
+        }
     });
 
-    $('#circle6').circleProgress({
-        value: 0.25,
-        size: 100,
-        startAngle:0,
-        fill: {
-            gradient: ["#ff1e41", "#ff5f43"]
+    var test6_label = document.getElementById('test6_label');
+    test6_label.addEventListener('click',function () {
+        if (show_tests[5]==0){
+            show_tests[5] = 1;
         }
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html('测试六<br>'+Math.round(25 * progress) + '%');
+        else {
+            show_tests[5] = 0;
+        }
     });
 
-    $('#circle7').circleProgress({
-        value: 1,
-        size: 100,
-        startAngle: 0,
-        fill: {
-            gradient: ["green", "lightblue"]
+    var test7_label = document.getElementById('test7_label');
+    test7_label.addEventListener('click',function () {
+        if (show_tests[6]==0){
+            show_tests[6] = 1;
         }
-    }).on('circle-animation-progress', function (event, progress, stepValue) {
-        $(this).find('strong').html('测试七<br>' + Math.round(100 * progress) + '%');
+        else {
+            show_tests[6] = 0;
+        }
     });
 
-    $('#circle8').circleProgress({
-        value: 0,
-        size: 100,
-        startAngle:0,
-        fill: {
-            gradient: ["#ff1e41", "#ff5f43"]
+    var test8_label = document.getElementById('test8_label');
+    test8_label.addEventListener('click',function () {
+        if (show_tests[7]==0){
+            show_tests[7] = 1;
         }
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html('测试八<br>'+Math.round(0 * progress) + '%');
+        else {
+            show_tests[7] = 0;
+        }
     });
 
-    $('#circle9').circleProgress({
-        value: 0,
-        size: 100,
-        startAngle:0,
-        fill: {
-            gradient: ["#ff1e41", "#ff5f43"]
+    var test9_label = document.getElementById('test9_label');
+    test9_label.addEventListener('click',function () {
+        if (show_tests[8]==0){
+            show_tests[8] = 1;
         }
-    }).on('circle-animation-progress', function(event, progress, stepValue) {
-        $(this).find('strong').html('测试九<br>'+Math.round(0 * progress) + '%');
+        else {
+            show_tests[8] = 0;
+        }
     });
+
+
+
+    var colors = [
+        ["#ff1e41", "#ff5f43"],//小于等于50%
+        [['#0681c4', .5], ['#4ac5f8', .5]],//大于50%，小于100%
+        ["green", "lightblue"]//100%
+    ];//所有可选的颜色
+
+    setTimeout(circle_test1,1990);
+    function circle_test1() {
+        var circle_percentage = situation[0]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle1').circleProgress({
+            // value: 0.75,
+            value: circle_percentage,
+            size: 100,
+            startAngle:0,
+            fill: {
+                gradient: color
+            }
+        }).on('circle-animation-progress', function(event, progress, stepValue) {
+            $(this).find('strong').html("测试一<br>" + Math.round( circle_percentage * 100 * progress) + "%");
+        });
+    }
+
+    setTimeout(circle_test2,2000);
+    function circle_test2() {
+        var circle_percentage = situation[1]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle2').circleProgress({
+//            value: 1.00,
+            value: circle_percentage,
+            size: 100,
+            startAngle:0,
+            fill: {
+                gradient: color
+            }
+        }).on('circle-animation-progress', function(event, progress, stepValue) {
+            $(this).find('strong').html('测试二<br>'+Math.round(circle_percentage * 100 * progress) + '%');
+        });
+    }
+
+    setTimeout(circle_test3,1980);
+    function circle_test3() {
+        var circle_percentage = situation[2]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle3').circleProgress({
+            value: circle_percentage,
+            size: 100,
+            startAngle:0,
+            fill: {
+                gradient: color
+            }
+        }).on('circle-animation-progress', function(event, progress, stepValue) {
+            $(this).find('strong').html('测试三<br>'+Math.round(circle_percentage * 100 * progress) + '%');
+        });
+    }
+
+    setTimeout(circle_test4,1960);
+    function circle_test4() {
+        var circle_percentage = situation[3]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle4').circleProgress({
+            value: circle_percentage,
+            size: 100,
+            startAngle:0,
+            fill: {
+                gradient: color
+            },
+            animation:{
+                duration: 1200,
+                easing: "circleProgressEasing"
+            }
+        }).on('circle-animation-progress', function(event, progress, stepValue) {
+            $(this).find('strong').html('测试四<br>'+Math.round(circle_percentage * 100 * progress) + '%');
+        });
+    }
+
+    setTimeout(circle_test5,1950);
+    function circle_test5() {
+        var circle_percentage = situation[4]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle5').circleProgress({
+            value: circle_percentage,
+            size: 100,
+            startAngle:0,
+            fill: {
+                gradient: color
+            }
+        }).on('circle-animation-progress', function(event, progress, stepValue) {
+            $(this).find('strong').html('测试五<br>'+Math.round(circle_percentage * 100 * progress) + '%');
+        });
+    }
+
+    setTimeout(circle_test6,2020);
+    function circle_test6() {
+        var circle_percentage = situation[5]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle6').circleProgress({
+            value: circle_percentage,
+            size: 100,
+            startAngle:0,
+            fill: {
+                gradient: color
+            }
+        }).on('circle-animation-progress', function(event, progress, stepValue) {
+            $(this).find('strong').html('测试六<br>'+Math.round(circle_percentage * 100 * progress) + '%');
+        });
+    }
+
+    setTimeout(circle_test7,2015);
+    function circle_test7() {
+        var circle_percentage = situation[6]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle7').circleProgress({
+            value: circle_percentage,
+            size: 100,
+            startAngle: 0,
+            fill: {
+                gradient: color
+            }
+        }).on('circle-animation-progress', function (event, progress, stepValue) {
+            $(this).find('strong').html('测试七<br>' + Math.round(circle_percentage * 100 * progress) + '%');
+        });
+    }
+
+    setTimeout(circle_test8,2005);
+    function circle_test8() {
+        var circle_percentage = situation[7]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle8').circleProgress({
+            value: circle_percentage,
+            size: 100,
+            startAngle:0,
+            fill: {
+                gradient: ["#ff1e41", "#ff5f43"]
+            }
+        }).on('circle-animation-progress', function(event, progress, stepValue) {
+            $(this).find('strong').html('测试八<br>'+Math.round(circle_percentage * 100 * progress) + '%');
+        });
+    }
+
+    setTimeout(circle_test9,1970);
+    function circle_test9() {
+        var circle_percentage = situation[8]['done_titles']/24;
+        var color;//画圈的时候采用的颜色
+        if(circle_percentage<=0.5){
+            color = colors[0];
+        }
+        else if(circle_percentage<1){
+            color = colors[1];
+        }
+        else {
+            color = colors[2];
+        }
+        $('#circle9').circleProgress({
+            value: circle_percentage,
+            size: 100,
+            startAngle:0,
+            fill: {
+                gradient: color
+            }
+        }).on('circle-animation-progress', function(event, progress, stepValue) {
+            $(this).find('strong').html('测试九<br>'+Math.round(circle_percentage * 100 * progress) + '%');
+        });
+    }
+
 </script>
 
 
